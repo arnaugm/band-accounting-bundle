@@ -1,0 +1,11 @@
+- ingres/despesa form
+- llsita ingresssos/despeses
+    - filtre
+        - ingressos/despeses/tot
+        - trimestre actual/2/3/tot
+    - totals
+        - ingressos del periode
+        - despeses del periode
+        - caixa restant
+- impressió perìode
+- mail notificació cal enviar extracte

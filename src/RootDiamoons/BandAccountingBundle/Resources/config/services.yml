@@ -1,0 +1,4 @@
+services:
+#    root_diamoons_band_accounting.example:
+#        class: RootDiamoons\BandAccountingBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
