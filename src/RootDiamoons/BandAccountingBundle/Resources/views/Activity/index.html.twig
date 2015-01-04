@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Band accounting</title>
+</head>
+<body>
+<h1>Band accounting</h1>
+{{ render(controller('RootDiamoonsBandAccountingBundle:Activity:new')) }}
+<table>
+    <tr>
+        <th>{{ 'amount' | trans }}</th>
+        <th>{{ 'concept' | trans }}</th>
+        <th>{{ 'date_value' | trans }}</th>
+        <th>{{ 'date' | trans }}</th>
+    </tr>
+    {% for activity in activities %}
+        <tr>
+            <td>{{ activity.amount }} €</td>
+            <td>{{ activity.concept }}</td>
+            <td>{{ activity.dateValue | date('d-m-Y') }}</td>
+            <td>{{ activity.date | date('d-m-Y') }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

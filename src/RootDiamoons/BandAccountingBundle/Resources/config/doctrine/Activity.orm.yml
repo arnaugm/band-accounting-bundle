@@ -1,0 +1,24 @@
+RootDiamoons\BandAccountingBundle\Entity\Activity:
+    type: entity
+    table: activities
+    repositoryClass: RootDiamoons\BandAccountingBundle\Entity\ActivityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        concept:
+            type: string
+            length: 255
+        amount:
+            type: decimal
+            precision: 15
+            scale: 2
+        date:
+            type: datetime
+        dateValue:
+            type: datetime
+            column: date_value
+    lifecycleCallbacks: {  }

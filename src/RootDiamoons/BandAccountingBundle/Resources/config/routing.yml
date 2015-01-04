@@ -1,3 +1,3 @@
 root_diamoons_band_accounting_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: RootDiamoonsBandAccountingBundle:Default:index }
+    path:     /
+    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:index }
