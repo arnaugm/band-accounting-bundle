@@ -1,5 +1,6 @@
+- bootstrap
 - ingres/despesa form
-- llsita ingresssos/despeses
+- llsita ingressos/despeses
     - filtre
         - ingressos/despeses/tot
         - trimestre actual/2/3/tot
