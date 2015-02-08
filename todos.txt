@@ -1,4 +1,4 @@
-- bootstrap
+- bootstrap responsive
 - ingres/despesa form
 - llsita ingressos/despeses
     - filtre
@@ -8,5 +8,6 @@
         - ingressos del periode
         - despeses del periode
         - caixa restant
+- creation date
 - impressió perìode
 - mail notificació cal enviar extracte

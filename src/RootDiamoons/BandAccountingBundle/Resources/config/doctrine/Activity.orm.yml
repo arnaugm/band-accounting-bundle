@@ -18,6 +18,9 @@ RootDiamoons\BandAccountingBundle\Entity\Activity:
             scale: 2
         date:
             type: datetime
+            gedmo:
+                timestampable:
+                    on: create
         dateValue:
             type: datetime
             column: date_value
