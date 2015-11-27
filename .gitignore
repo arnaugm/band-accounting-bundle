@@ -1,10 +1,12 @@
-# Default
 web/bundles/
+web/vendor/
 app/bootstrap.php.cache
 app/cache/*
-/app/config/parameters.yml
+app/config/parameters.yml
 app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/vendor/
-/bin/
+vendor/
+bin/
+bower_components/
+node_modules/
