@@ -35,6 +35,11 @@ class Activity
     private $dateValue;
 
 
+    public function __construct()
+    {
+        $this->dateValue = new \DateTime();
+    }
+
     /**
      * Get id
      *

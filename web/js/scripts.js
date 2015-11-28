@@ -1,5 +1,5 @@
 $(function () {
-  $('#date-value').datepicker({
+  $('.date-value').datepicker({
     dateFormat: 'dd/mm/yy',
     firstDay: 1
   });

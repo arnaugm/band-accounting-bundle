@@ -12,7 +12,11 @@ class ActivityType extends AbstractType
         $builder
             ->add('concept')
             ->add('amount')
-            ->add('dateValue');
+            ->add('dateValue', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'attr' => array('class' => 'date-value')
+            ));
 
         $builder
             ->add('submit', 'submit');
