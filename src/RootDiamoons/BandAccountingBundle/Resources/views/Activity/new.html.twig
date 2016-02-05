@@ -1,7 +1,7 @@
 <form id="new_activity_form" name="new_activity_form" action="{{ path('root_diamoons_band_accounting_activity_create') }}" method="post">
     {{ form_row(form.concept) }}
     {{ form_row(form.amount) }}
-    {{ form_row(form.dateValue, {'attr': {'id': 'date-value'}}) }}
+    {{ form_row(form.dateValue) }}
     {{ form_row(form.submit) }}
     {{ form_rest(form) }}
 </form>
