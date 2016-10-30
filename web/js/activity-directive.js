@@ -1,14 +1,26 @@
 'use strict';
 
-angular.module('directives.activity', ['models.activity', 'ngMaterial'])
+angular.module('directives.activity', ['models.activity', 'resources.activity', 'ngMaterial'])
 
-  .directive('activityDirective', ['activityModel', '$mdToast', '$rootScope', function(ActivityModel, $mdToast, $rootScope) {
+  .directive('activityDirective', ['activityModel', 'activityResource', '$mdToast', '$rootScope', function(ActivityModel, activityResource, $mdToast, $rootScope) {
 
     return {
       restrict: 'E',
       templateUrl: 'templates/edit-activity-directive.html',
+      scope: {
+        activityId: '='
+      },
+
       controller: function($scope) {
-        $scope.activity = new ActivityModel();
+        if ($scope.activityId) {
+          activityResource.get($scope.activityId).$promise.then(function(result) {
+            $scope.activity = new ActivityModel(result.activity);
+          }).catch(function(e) {
+            console.log('error getting activity ' + activityId);
+          });
+        } else {
+          $scope.activity = new ActivityModel();
+        }
 
         $scope.save = function() {
           $scope.activity.save().then(function(data) {
@@ -20,9 +32,11 @@ angular.module('directives.activity', ['models.activity', 'ngMaterial'])
         };
 
         $scope.valid = function() {
-          return ($scope.activity.concept &&
-          $scope.activity.amount &&
-          $scope.activity.dateValue);
+          return (
+            $scope.activity.concept &&
+            $scope.activity.amount &&
+            $scope.activity.dateValue
+          );
         }
       }
     };

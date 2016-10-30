@@ -4,10 +4,12 @@ angular.module('models.activity', ['resources.activity'])
 
   .factory('activityModel', ['activityResource', function(activityResource) {
 
-    var Activity = function(concept, amount, dateValue) {
-      this.concept = concept;
-      this.amount = amount;
-      this.dateValue = dateValue || new Date();
+    var Activity = function(data) {
+      data = data || {};
+      
+      this.concept = data.concept;
+      this.amount = data.amount;
+      this.dateValue = data.dateValue || new Date();
     };
 
     Activity.prototype.save = function() {
