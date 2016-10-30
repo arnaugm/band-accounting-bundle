@@ -1,0 +1,13 @@
+.pos {
+    background-color: rgba(0,255,0,0.1)
+}
+
+.neg {
+    background-color: rgba(255,0,0,0.1)
+}
+
+.total {
+    background: #f7f7f7;
+    border-radius: 3px;
+    padding: 40px;
+}

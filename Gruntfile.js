@@ -8,20 +8,35 @@ module.exports = function (grunt) {
           {
             expand: true,
             flatten: true,
-            src: ['bower_components/jquery/dist/jquery.min.js'],
-            dest: 'web/vendor/jquery/'
+            src: ['bower_components/angular/angular.min.js'],
+            dest: 'web/vendor/angular/'
           },
           {
             expand: true,
             flatten: true,
-            src: ['bower_components/jquery-ui/jquery-ui.min.js'],
-            dest: 'web/vendor/jquery-ui/'
+            src: ['bower_components/angular-animate/angular-animate.min.js'],
+            dest: 'web/vendor/angular-animate/'
           },
           {
             expand: true,
-            cwd: 'bower_components/jquery-ui/themes/blitzer/',
-            src: ['**'],
-            dest: 'web/vendor/jquery-ui/'
+            flatten: true,
+            src: ['bower_components/angular-aria/angular-aria.min.js'],
+            dest: 'web/vendor/angular-aria/'
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: [
+              'bower_components/angular-material/angular-material.min.js',
+              'bower_components/angular-material/angular-material.min.css'
+            ],
+            dest: 'web/vendor/angular-material/'
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: ['bower_components/angular-resource/angular-resource.min.js'],
+            dest: 'web/vendor/angular-resource/'
           }
         ]
       }

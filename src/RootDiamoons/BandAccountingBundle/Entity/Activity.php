@@ -35,9 +35,11 @@ class Activity
     private $dateValue;
 
 
-    public function __construct()
+    public function __construct($concept, $amount, $dateValue)
     {
-        $this->dateValue = new \DateTime();
+        $this->concept = $concept;
+        $this->amount = $amount;
+        $this->dateValue = $dateValue;
     }
 
     /**

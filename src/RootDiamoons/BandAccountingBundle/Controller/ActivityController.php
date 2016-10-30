@@ -2,52 +2,111 @@
 
 namespace RootDiamoons\BandAccountingBundle\Controller;
 
+use Exception;
 use RootDiamoons\BandAccountingBundle\Entity\Activity;
-use RootDiamoons\BandAccountingBundle\Form\ActivityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class ActivityController extends Controller
 {
     public function indexAction()
     {
+        return $this->render('RootDiamoonsBandAccountingBundle:Activity:index.html.twig');
+    }
+
+    public function getAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
 
-        $activities = $repository->findBy(array(), array('dateValue' => 'DESC'));
+        $activity = $repository->getActivity($id);
 
-        return $this->render('RootDiamoonsBandAccountingBundle:Activity:index.html.twig', array(
-            'activities' => $activities
-        ));
+        $response = new JsonResponse();
+        $response->setData(
+            array(
+                'activity' => $activity,
+            )
+        );
+
+        return $response;
     }
 
-    public function newAction()
+    public function listAction()
     {
-        $activity = new Activity();
-        $activity->setDateValue(new \DateTime());
-        $form = $this->createForm(new ActivityType(), $activity);
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
 
-        return $this->render('RootDiamoonsBandAccountingBundle:Activity:new.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        $activities = $repository->getActivities();
+
+        $response = new JsonResponse();
+        $response->setData(
+            array(
+                'activities' => $activities,
+                'total' => $this->sum($activities),
+            )
+        );
+
+        return $response;
+    }
+
+    private function sum($activities)
+    {
+        $total = 0;
+        foreach ($activities as $activity) {
+            $total += $activity['amount'];
+        }
+
+        return $total;
     }
 
     public function createAction(Request $request)
     {
-        $activity = new Activity();
-        $form = $this->createForm(new ActivityType(), $activity);
-
-        $form->handleRequest($request);
-
+        $data = json_decode($request->getContent(), true);
         $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
+        if (!array_key_exists('concept', $data) ||
+            !array_key_exists('amount', $data) ||
+            !array_key_exists('dateValue', $data)
+        ) {
+            $httpCode = 400;
+            $message = 'Validation error';
 
-            $em->persist($activity);
-            $em->flush();
+            return $this->errorResponse($httpCode, $message);
         }
 
-        return $this->redirect($this->generateUrl('root_diamoons_band_accounting_activity'));
+        $concept = $data['concept'];
+        $amount = $data['amount'];
+        $dateValue = new \DateTime($data['dateValue']);
+
+        $activity = new Activity($concept, $amount, $dateValue);
+
+        try {
+            $em->persist($activity);
+            $em->flush();
+
+            return new JsonResponse(
+                array(
+                    'status' => 'ok',
+                    'id' => $activity->getId(),
+                ), 200
+            );
+
+        } catch (Exception $e) {
+            return $this->errorResponse(500, $e->getMessage());
+        }
+    }
+
+    private function errorResponse($httpCode, $message)
+    {
+        return new JsonResponse(
+            array(
+                'status' => 'error',
+                'errors' => $message,
+            ), $httpCode
+        );
     }
 }

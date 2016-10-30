@@ -3,13 +3,13 @@ root_diamoons_band_accounting_homepage:
     defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:index }
 
 root_diamoons_band_accounting_activity:
-    path:     /activity
-    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:index }
+    path:     /activity/{id}
+    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:get }
+    requirements: {id: \d+}
 
-root_diamoons_band_accounting_activity_new:
-    path:     /activity/new
-    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:new }
-    requirements: { _method: get }
+root_diamoons_band_accounting_activity_list:
+    path:     /activity/list
+    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:list }
 
 root_diamoons_band_accounting_activity_create:
     path:     /activity/new

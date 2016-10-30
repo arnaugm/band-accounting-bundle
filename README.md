@@ -7,5 +7,6 @@ Accounting system for bands
 ```
 composer install
 npm install
+bower install
 grunt
 ```

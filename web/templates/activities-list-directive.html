@@ -1,0 +1,40 @@
+<md-toolbar layout-align="center stretch" layout-fill layout-padding>
+    <div layout="row">
+        <div flex="15" layout="row" layout-align="center center">
+            Date value
+        </div>
+        <div flex="15" layout="row" layout-align="center">
+            Date
+        </div>
+        <div flex="55" layout="row" layout-align="center">
+            Concept
+        </div>
+        <div flex="15" layout="row" layout-align="center">
+            Amount
+        </div>
+    </div>
+</md-toolbar>
+
+<md-content flex>
+    <md-list>
+
+        <md-list-item ng-repeat="activity in activities" ng-class="{ pos: activity.amount >= 0, neg: activity.amount < 0 }">
+            <div layout="row" layout-fill layout-padding>
+                <div flex="15" layout="row" layout-align="center">
+                    {{ activity.dateValue | toJsDate | date:'dd-MM-yyyy' }}
+                </div>
+                <div flex="15" layout="row" layout-align="center">
+                    {{ activity.date | toJsDate | date:'dd-MM-yyyy' }}
+                </div>
+                <div flex="55" layout="row" layout-align="start">
+                    {{ activity.concept }}
+                </div>
+                <div flex="15" layout="row" layout-align="end">
+                    {{ activity.amount }} €
+                </div>
+            </div>
+        </md-list-item>
+        <md-divider></md-divider>
+
+    </md-list>
+</md-content>

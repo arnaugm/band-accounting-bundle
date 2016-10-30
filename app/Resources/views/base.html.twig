@@ -4,18 +4,26 @@
     <meta charset="UTF-8"/>
     <title>{% block title %}Band accounting{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('vendor/jquery-ui/jquery-ui.min.css') }}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link href="{{ asset('vendor/angular-material/angular-material.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
-<body>
+<body ng-app="app" layout="column">
 {% block body %}{% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('vendor/angular/angular.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/angular-animate/angular-animate.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('vendor/angular-aria/angular-aria.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('vendor/angular-material/angular-material.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('vendor/angular-resource/angular-resource.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/app.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/activity-model.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/activity-directive.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/activities-list-directive.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/activity-resource.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/date-helper.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('js/filters.js') }}" type="text/javascript" ></script>
 {% endblock %}
 </body>
 </html>

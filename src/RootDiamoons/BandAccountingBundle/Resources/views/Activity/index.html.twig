@@ -1,32 +1,29 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Band accounting</h1>
-            </div>
+
+    <md-toolbar layout="row">
+        <h1>Band accounting</h1>
+    </md-toolbar>
+
+    <div layout="column">
+
+        <div layout="column" layout-padding ng-cloak>
+            <br/>
+            <md-content class="autoScroll">
+
+                <activity-directive></activity-directive>
+
+            </md-content>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                {{ render(controller('RootDiamoonsBandAccountingBundle:Activity:new')) }}
-            </div>
+
+
+        <div layout="row" class="total">
+            {#Total: {{ total }} €#}
         </div>
-        <table>
-            <tr>
-                <th>{{ 'amount' | trans }}</th>
-                <th>{{ 'concept' | trans }}</th>
-                <th>{{ 'date_value' | trans }}</th>
-                <th>{{ 'date' | trans }}</th>
-            </tr>
-            {% for activity in activities %}
-                <tr>
-                    <td>{{ activity.amount }} €</td>
-                    <td>{{ activity.concept }}</td>
-                    <td>{{ activity.dateValue | date('d-m-Y') }}</td>
-                    <td>{{ activity.date | date('d-m-Y') }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+
+        <activities-list-directive></activities-list-directive>
+
     </div>
+
 {% endblock body %}
