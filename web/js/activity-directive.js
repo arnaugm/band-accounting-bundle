@@ -13,18 +13,19 @@ angular.module('directives.activity', ['models.activity', 'resources.activity', 
 
       controller: function($scope) {
         if ($scope.activityId) {
-          activityResource.get($scope.activityId).$promise.then(function(result) {
-            $scope.activity = new ActivityModel(result.activity);
+          activityResource.get($scope.activityId).then(function(activity) {
+            $scope.activity = new ActivityModel(activity);
           }).catch(function(e) {
-            console.log('error getting activity ' + activityId);
+            console.log('error getting activity ' + $scope.activityId);
           });
         } else {
           $scope.activity = new ActivityModel();
         }
 
         $scope.save = function() {
-          $scope.activity.save().then(function(data) {
-            $rootScope.$broadcast('activitySaved', data.id);
+          $scope.activity.save().then(function() {
+            $scope.activity.date = new Date();
+            $rootScope.$broadcast('activitySaved', $scope.activity);
             $mdToast.showSimple('Activity saved');
           }).catch(function() {
             $mdToast.showSimple('Error saving activity');
@@ -33,6 +34,7 @@ angular.module('directives.activity', ['models.activity', 'resources.activity', 
 
         $scope.valid = function() {
           return (
+            $scope.activity &&
             $scope.activity.concept &&
             $scope.activity.amount &&
             $scope.activity.dateValue

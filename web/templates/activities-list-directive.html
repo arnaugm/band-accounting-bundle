@@ -21,10 +21,10 @@
         <md-list-item ng-repeat="activity in activities" ng-class="{ pos: activity.amount >= 0, neg: activity.amount < 0 }" ng-click="editActivity($event, activity)">
             <div layout="row" layout-fill layout-padding>
                 <div flex="15" layout="row" layout-align="center">
-                    {{ activity.dateValue | toJsDate | date:'dd-MM-yyyy' }}
+                    {{ activity.dateValue | date:'dd-MM-yyyy' }}
                 </div>
                 <div flex="15" layout="row" layout-align="center">
-                    {{ activity.date | toJsDate | date:'dd-MM-yyyy' }}
+                    {{ activity.date | date:'dd-MM-yyyy' }}
                 </div>
                 <div flex="55" layout="row" layout-align="start">
                     {{ activity.concept }}

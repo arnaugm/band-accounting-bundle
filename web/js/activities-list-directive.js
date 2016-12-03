@@ -10,19 +10,15 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
       controller: function($scope) {
         $scope.activities = [];
 
-        activityResource.get().$promise.then(function(result) {
+        activityResource.get().then(function(result) {
           $scope.total = result.total;
           $scope.activities = result.activities;
         }).catch(function(e) {
           console.log('error getting activity list');
         });
 
-        $rootScope.$on('activitySaved', function(event, activityId) {
-          activityResource.get(activityId).$promise.then(function(result) {
-            $scope.activities.unshift(result.activity);
-          }).catch(function(e) {
-            console.log('error getting inserted activity');
-          });
+        $rootScope.$on('activitySaved', function(event, activity) {
+          $scope.activities.unshift(activity);
         });
 
         $scope.customFullscreen = false;
@@ -47,7 +43,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
 
         function DialogController($scope, $mdDialog, activityId) {
           $scope.activityId = activityId;
-          
+
           $scope.hide = function() {
             $mdDialog.hide();
           };

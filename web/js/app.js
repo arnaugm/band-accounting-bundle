@@ -3,6 +3,5 @@
 angular.module('app', [
   'ngMaterial',
   'directives.activity',
-  'directives.activitiesList',
-  'filters'
+  'directives.activitiesList'
 ]);

@@ -2,7 +2,7 @@
 
 angular.module('resources.activity', ['ngResource'])
 
-  .factory('activityResource', ['$resource', function($resource) {
+  .factory('activityResource', ['$resource', '$q', function($resource, $q) {
 
     var activityResource = {
       api: {
@@ -13,11 +13,26 @@ angular.module('resources.activity', ['ngResource'])
     };
 
     activityResource.get = function(activityId) {
+      var deferred = $q.defer();
       if (!activityId) {
-        return this.api.getList.get();
+        this.api.getList.get().$promise.then(function(result) {
+          result.activities.forEach(function(activity) {
+            activity.amount = parseFloat(activity.amount);
+            activity.date = new Date(activity.date.date);
+            activity.dateValue = new Date(activity.dateValue.date);
+          });
+          deferred.resolve(result);
+        });
       } else {
-        return this.api.getActivity.get({activityId: activityId});
+        this.api.getActivity.get({activityId: activityId}).$promise.then(function(result) {
+          var activity = result.activity;
+          activity.amount = parseFloat(activity.amount);
+          activity.date = new Date(activity.date.date);
+          activity.dateValue = new Date(activity.dateValue.date);
+          deferred.resolve(activity);
+        });
       }
+      return deferred.promise;
     };
 
     activityResource.save = function(activity) {
