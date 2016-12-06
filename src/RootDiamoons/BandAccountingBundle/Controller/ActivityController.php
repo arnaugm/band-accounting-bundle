@@ -18,23 +18,6 @@ class ActivityController extends Controller
         return $this->render('RootDiamoonsBandAccountingBundle:Activity:index.html.twig');
     }
 
-    public function getAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
-
-        $activity = $repository->getActivity($id);
-
-        $response = new JsonResponse();
-        $response->setData(
-            array(
-                'activity' => $activity,
-            )
-        );
-
-        return $response;
-    }
-
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -83,6 +66,49 @@ class ActivityController extends Controller
         $dateValue = new \DateTime($data['dateValue']);
 
         $activity = new Activity($concept, $amount, $dateValue);
+
+        try {
+            $em->persist($activity);
+            $em->flush();
+
+            return new JsonResponse(
+                array(
+                    'status' => 'ok',
+                    'id' => $activity->getId(),
+                    'date' => $activity->getDate(),
+                ), 200
+            );
+
+        } catch (Exception $e) {
+            return $this->errorResponse(500, $e->getMessage());
+        }
+    }
+
+    public function updateAction(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+        $em = $this->getDoctrine()->getManager();
+
+        if (!array_key_exists('concept', $data) ||
+            !array_key_exists('amount', $data) ||
+            !array_key_exists('dateValue', $data)
+        ) {
+            $httpCode = 400;
+            $message = 'Validation error';
+
+            return $this->errorResponse($httpCode, $message);
+        }
+
+        $id = $data['id'];
+        $concept = $data['concept'];
+        $amount = $data['amount'];
+        $dateValue = new \DateTime($data['dateValue']);
+
+        $activity = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity')->find($id);
+
+        $activity->setConcept($concept);
+        $activity->setAmount($amount);
+        $activity->setDateValue($dateValue);
 
         try {
             $em->persist($activity);

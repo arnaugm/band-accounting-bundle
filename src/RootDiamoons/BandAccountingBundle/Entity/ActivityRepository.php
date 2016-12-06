@@ -11,23 +11,11 @@ use Doctrine\ORM\Query;
  */
 class ActivityRepository extends EntityRepository
 {
-    public function getActivity($id)
-    {
-        $qb = $this->createQueryBuilder('a')
-            ->select('a')
-            ->where('a.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getSingleResult(Query::HYDRATE_ARRAY);
-
-        return $qb;
-    }
-
     public function getActivities()
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a')
-            ->setMaxResults(3)
+            ->setMaxResults(10)
             ->orderBy('a.dateValue', 'DESC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);

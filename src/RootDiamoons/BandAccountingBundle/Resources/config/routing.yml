@@ -2,16 +2,17 @@ root_diamoons_band_accounting_homepage:
     path:     /
     defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:index }
 
-root_diamoons_band_accounting_activity:
-    path:     /activity/{id}
-    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:get }
-    requirements: {id: \d+}
-
 root_diamoons_band_accounting_activity_list:
-    path:     /activity/list
+    path:     /activities
     defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:list }
+    methods: [GET]
 
 root_diamoons_band_accounting_activity_create:
-    path:     /activity/new
+    path:     /activities
     defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:create }
-    requirements: { _method: post }
+    methods: [POST]
+
+root_diamoons_band_accounting_activity_update:
+    path:     /activities/{id}
+    defaults: { _controller: RootDiamoonsBandAccountingBundle:Activity:update }
+    methods: [PUT]

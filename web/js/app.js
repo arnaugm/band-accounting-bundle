@@ -2,6 +2,6 @@
 
 angular.module('app', [
   'ngMaterial',
-  'directives.activity',
+  'directives.editActivity',
   'directives.activitiesList'
 ]);
