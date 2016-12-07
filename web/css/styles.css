@@ -1,3 +1,7 @@
+#activities md-list {
+    padding: 0;
+}
+
 .pos {
     background-color: rgba(0,255,0,0.1)
 }

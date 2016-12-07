@@ -2,28 +2,18 @@
 
 {% block body %}
 
-    <md-toolbar layout="row">
-        <h1>Band accounting</h1>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h1>Band accounting</h1>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="New activity" ng-click="newActivity()">
+                <i class="material-icons">add_circle</i>
+            </md-button>
+        </div>
     </md-toolbar>
 
-    <div layout="column">
-
-        <div layout="column" layout-padding ng-cloak>
-            <br/>
-            <md-content class="autoScroll">
-
-                <edit-activity-directive></edit-activity-directive>
-
-            </md-content>
-        </div>
-
-
-        <div layout="row" class="total">
-            {#Total: {{ total }} €#}
-        </div>
-
+    <md-content flex id="activities">
         <activities-list-directive></activities-list-directive>
-
-    </div>
+    </md-content>
 
 {% endblock body %}

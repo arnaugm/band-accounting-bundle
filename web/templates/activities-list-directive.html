@@ -1,6 +1,6 @@
-<md-toolbar layout-align="center stretch" layout-fill layout-padding>
-    <div layout="row">
-        <div flex="15" layout="row" layout-align="center center">
+<md-toolbar class="md-hue-3">
+    <div layout="row" class="md-toolbar-tools" layout-align="space-around center">
+        <div flex="15" layout="row" layout-align="center">
             Date value
         </div>
         <div flex="15" layout="row" layout-align="center">
@@ -14,27 +14,22 @@
         </div>
     </div>
 </md-toolbar>
-
-<md-content flex>
-    <md-list>
-
-        <md-list-item ng-repeat="activity in activities track by activity.id" ng-class="{ pos: activity.amount >= 0, neg: activity.amount < 0 }" ng-click="editActivity($event, $index)">
-            <div layout="row" layout-fill layout-padding>
-                <div flex="15" layout="row" layout-align="center">
-                    {{ activity.dateValue | date:'dd-MM-yyyy' }}
-                </div>
-                <div flex="15" layout="row" layout-align="center">
-                    {{ activity.date | date:'dd-MM-yyyy' }}
-                </div>
-                <div flex="55" layout="row" layout-align="start">
-                    {{ activity.concept }}
-                </div>
-                <div flex="15" layout="row" layout-align="end">
-                    {{ activity.amount }} €
-                </div>
+<md-list>
+    <md-list-item ng-repeat="activity in activities track by activity.id" ng-class="{ pos: activity.amount >= 0, neg: activity.amount < 0 }" ng-click="editActivity($event, $index)">
+        <div layout="row" layout-fill layout-padding>
+            <div flex="15" layout="row" layout-align="center">
+                {{ activity.dateValue | date:'dd-MM-yyyy' }}
             </div>
-        </md-list-item>
+            <div flex="15" layout="row" layout-align="center">
+                {{ activity.date | date:'dd-MM-yyyy' }}
+            </div>
+            <div flex="55" layout="row" layout-align="start">
+                {{ activity.concept }}
+            </div>
+            <div flex="15" layout="row" layout-align="end">
+                {{ activity.amount }} €
+            </div>
+        </div>
         <md-divider></md-divider>
-
-    </md-list>
-</md-content>
+    </md-list-item>
+</md-list>
