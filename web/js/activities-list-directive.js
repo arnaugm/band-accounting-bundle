@@ -24,7 +24,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           $mdToast.showSimple('Activity saved');
           $scope.activities.unshift(activity);
           $mdDialog.hide();
-          
+
         });
 
         $rootScope.$on('activityUpdated', function(event, activity) {

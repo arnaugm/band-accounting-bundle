@@ -2,6 +2,17 @@
 
 angular.module('directives.editActivity', ['models.activity', 'resources.activity'])
 
+  .config(function($mdDateLocaleProvider) {
+
+    // Can change week display to start on Monday.
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
+
+    $mdDateLocaleProvider.formatDate = function(date) {
+      date = new Date(date);
+      return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+    };
+  })
+
   .directive('editActivityDirective', ['activityModel', 'activityResource', '$rootScope', function(ActivityModel, activityResource, $rootScope) {
 
     return {
