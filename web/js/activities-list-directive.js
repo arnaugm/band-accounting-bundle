@@ -7,6 +7,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
     return {
       restrict: 'E',
       templateUrl: 'templates/activities-list-directive.html',
+      scope: {},
       controller: function($scope) {
         $scope.activities = [];
 
@@ -22,7 +23,8 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $rootScope.$on('activitySaved', function(event, activity) {
           $mdToast.showSimple('Activity saved');
           $scope.activities.unshift(activity);
-
+          $mdDialog.hide();
+          
         });
 
         $rootScope.$on('activityUpdated', function(event, activity) {
@@ -37,6 +39,17 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           $mdDialog.hide();
 
         });
+
+        $rootScope.newActivity = function($event) {
+          $mdDialog.show({
+            controller: ['$scope', '$mdDialog', DialogController],
+            templateUrl: '../templates/edit-activity-dialog.html',
+            parent: angular.element(document.body),
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+          })
+        };
 
         $scope.customFullscreen = false;
         $scope.editActivity = function($event, $index) {
