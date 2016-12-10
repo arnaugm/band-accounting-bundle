@@ -47,6 +47,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
+            onComplete: afterShowAnimation,
             fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
           })
         };
@@ -64,6 +65,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
+            onComplete: afterShowAnimation,
             fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
           })
         };
@@ -74,6 +76,10 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
+        }
+
+        function afterShowAnimation() {
+          document.getElementById('activity-concept').focus();
         }
       }
     };
