@@ -15,7 +15,7 @@ class ActivityRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a')
-            ->setMaxResults(10)
+//            ->setMaxResults(10)
             ->orderBy('a.dateValue', 'DESC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
