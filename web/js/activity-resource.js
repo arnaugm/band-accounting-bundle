@@ -8,28 +8,22 @@ angular.module('resources.activity', ['ngResource'])
       api: {
         activities: $resource('/activities'),
         activity: $resource('/activities/:activityId', {activityId: '@activityId'}, {
-          update: { method: 'PUT' }
+          update: {method: 'PUT'}
         })
       }
     };
 
-    activityResource.get = function(activityId) {
+    activityResource.get = function() {
       var deferred = $q.defer();
-      if (!activityId) {
-        this.api.activities.get().$promise
-          .then(function(result) {
-            result.activities.forEach(function(activity) {
-              activity.amount = parseFloat(activity.amount);
-              activity.date = new Date(activity.date.date);
-              activity.dateValue = new Date(activity.dateValue.date);
-            });
-
-          deferred.resolve(result);
-        }).catch(function(error) {
-          console.log(error);
-          deferred.reject();
+      this.api.activities.get().$promise.then(function(result) {
+        result.activities.forEach(function(activity) {
+          activity.amount = parseFloat(activity.amount);
+          activity.date = new Date(activity.date.date);
+          activity.dateValue = new Date(activity.dateValue.date);
         });
-      }
+        deferred.resolve(result);
+      });
+
       return deferred.promise;
     };
 
