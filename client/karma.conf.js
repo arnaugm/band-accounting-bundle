@@ -5,24 +5,13 @@ module.exports = function(config) {
     basePath: './app',
 
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      '*.js',
-      '*-spec.js'
+      '../bower_components/angular/angular.js',
+      '../bower_components/angular-resource/angular-resource.js',
+      '../bower_components/angular-route/angular-route.js',
+      '../bower_components/angular-mocks/angular-mocks.js',
+      '**/*.js',
+      '**/*-spec.js'
     ],
-
-    preprocessors: {
-      'bower_components/angular/angular.js': ['webpack', 'sourcemap'],
-      'bower_components/angular-route/angular-route.js': ['webpack', 'sourcemap'],
-      'bower_components/angular-mocks/angular-mocks.js': ['webpack', 'sourcemap'],
-      '*.js': ['webpack', 'sourcemap'],
-      '*-spec.js': ['webpack', 'sourcemap']
-    },
-
-    webpack: {
-      devtool: 'inline-source-map'
-    },
 
     autoWatch: true,
 
@@ -35,8 +24,20 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-jasmine',
       'karma-junit-reporter',
-      'karma-webpack'
+      'karma-coverage'
     ],
+
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      '**/!(*spec).js': ['coverage']
+    },
+
+    coverageReporter: {
+      type : 'html',
+      dir : '../coverage/',
+      subdir: '.'
+    },
 
     junitReporter: {
       outputFile: 'test_out/unit.xml',

@@ -16,13 +16,18 @@ angular.module('resources.activity', ['ngResource'])
     activityResource.get = function(activityId) {
       var deferred = $q.defer();
       if (!activityId) {
-        this.api.activities.get().$promise.then(function(result) {
-          result.activities.forEach(function(activity) {
-            activity.amount = parseFloat(activity.amount);
-            activity.date = new Date(activity.date.date);
-            activity.dateValue = new Date(activity.dateValue.date);
-          });
+        this.api.activities.get().$promise
+          .then(function(result) {
+            result.activities.forEach(function(activity) {
+              activity.amount = parseFloat(activity.amount);
+              activity.date = new Date(activity.date.date);
+              activity.dateValue = new Date(activity.dateValue.date);
+            });
+
           deferred.resolve(result);
+        }).catch(function(error) {
+          console.log(error);
+          deferred.reject();
         });
       }
       return deferred.promise;
