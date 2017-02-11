@@ -24,12 +24,12 @@ describe('activity resource', function() {
         concept: "activity",
         date: {
           date: "2017-01-29 21:11:21.000000",
-          timezone: "Europe/Berlin",
+          timezone: "UTC",
           timezone_type: 3
         },
         dateValue: {
           date: "2017-01-29 21:11:12.000000",
-          timezone: "Europe/Berlin",
+          timezone: "UTC",
           timezone_type: 3
         }
       }
@@ -62,8 +62,8 @@ describe('activity resource', function() {
       promise.then(function(result) {
         var activity = result.activities[0];
         expect(activity.amount).toBe(1);
-        expect(activity.date).toBe(0);
-        expect(activity.dateValue).toBe(0);
+        expect(activity.date).toEqual(new Date(Date.UTC(2017, 0, 29, 21, 11, 21)));
+        expect(activity.dateValue).toEqual(new Date(Date.UTC(2017, 0, 29, 21, 11, 12)));
         done();
       });
 

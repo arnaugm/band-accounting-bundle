@@ -18,8 +18,8 @@ angular.module('resources.activity', ['ngResource'])
       this.api.activities.get().$promise.then(function(result) {
         result.activities.forEach(function(activity) {
           activity.amount = parseFloat(activity.amount);
-          activity.date = new Date(activity.date.date);
-          activity.dateValue = new Date(activity.dateValue.date);
+          activity.date = transformTimezone(activity.date);
+          activity.dateValue = transformTimezone(activity.dateValue);
         });
         deferred.resolve(result);
       });
@@ -33,6 +33,12 @@ angular.module('resources.activity', ['ngResource'])
 
     activityResource.update = function(activity) {
       return this.api.activity.update({activityId: activity.id}, activity);
+    };
+
+    var transformTimezone = function(richDate) {
+      var stringDate = richDate.date + ' GMT';
+      var date = new Date(stringDate);
+      return date;
     };
 
     return activityResource;
