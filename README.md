@@ -10,3 +10,15 @@ cd client
 npm install
 grunt
 ```
+
+## Development
+
+```
+grunt watch
+```
+
+## Test
+
+```
+npm test
+```
