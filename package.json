@@ -1,0 +1,6 @@
+{
+  "name": "band-accounting",
+  "scripts": {
+    "test": "cd client && npm test"
+  }
+}

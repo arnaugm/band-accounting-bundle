@@ -56,7 +56,7 @@ describe('activity resource', function() {
         .whenGET('/activities')
         .respond(200, {activities: activities});
 
-      var promise = activityResource.get(1);
+      var promise = activityResource.get();
       $httpBackend.flush();
 
       promise.then(function(result) {
