@@ -26,6 +26,12 @@ module.exports = function (grunt) {
           {
             expand: true,
             flatten: true,
+            src: ['bower_components/angular-i18n/angular-locale_es-es.js'],
+            dest: '../web/vendor/angular-i18n/'
+          },
+          {
+            expand: true,
+            flatten: true,
             src: [
               'bower_components/angular-material/angular-material.min.js',
               'bower_components/angular-material/angular-material.min.css'

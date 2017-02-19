@@ -21,6 +21,7 @@
     "angular-mocks": "1.5.11",
     "angular-loader": "1.5.11",
     "angular-resource": "1.5.11",
-    "angular-route": "1.5.11"
+    "angular-route": "1.5.11",
+    "angular-i18n": "^1.6.2"
   }
 }

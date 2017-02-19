@@ -1,5 +1,5 @@
 <div flex id="totals">
-    Income: {{ income || '-' }} Expenses: {{ expenses || '-' }} Total: {{ total || '-' }}
+    Income: {{ income | currency : '€' }} Expenses: {{ expenses | currency : '€' }} Total: {{ total | currency : '€' }}
 </div>
 
 <md-toolbar class="md-hue-3">
