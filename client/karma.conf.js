@@ -9,6 +9,9 @@ module.exports = function(config) {
       '../bower_components/angular-resource/angular-resource.js',
       '../bower_components/angular-route/angular-route.js',
       '../bower_components/angular-mocks/angular-mocks.js',
+      '../bower_components/angular-material/angular-material.js',
+      '../bower_components/angular-animate/angular-animate.js',
+      '../bower_components/angular-aria/angular-aria.js',
       '**/*.js',
       '**/*-spec.js'
     ],
@@ -24,10 +27,11 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-jasmine',
       'karma-junit-reporter',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-mocha-reporter'
     ],
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['mocha', 'coverage'],
 
     preprocessors: {
       '**/!(*spec).js': ['coverage']

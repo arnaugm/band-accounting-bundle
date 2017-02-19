@@ -2,7 +2,7 @@
 
 angular.module('directives.activitiesList', ['resources.activity', 'helpers.date', 'ngMaterial'])
 
-  .directive('activitiesListDirective', ['activityResource', 'dateHelper', '$rootScope', '$mdDialog', '$mdToast', function(activityResource, dateHelper, $rootScope, $mdDialog, $mdToast) {
+  .directive('activitiesList', ['activityResource', 'dateHelper', '$rootScope', '$mdDialog', '$mdToast', function(activityResource, dateHelper, $rootScope, $mdDialog, $mdToast) {
 
     return {
       restrict: 'E',
@@ -13,6 +13,8 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
 
         activityResource.get().then(function(result) {
           $scope.total = result.total;
+          $scope.income = result.income;
+          $scope.expenses = result.expenses;
           $scope.activities = result.activities;
 
         }).catch(function(e) {
@@ -81,6 +83,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         function afterShowAnimation() {
           document.getElementById('activity-concept').focus();
         }
+
       }
     };
   }]);

@@ -43,6 +43,12 @@ module.exports = function (grunt) {
             flatten: true,
             src: ['app/**/!(*spec).js'],
             dest: '../web/js/'
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: ['app/templates/**/*.html'],
+            dest: '../web/templates/'
           }
         ]
       }
@@ -50,7 +56,10 @@ module.exports = function (grunt) {
 
     watch: {
       scripts: {
-        files: ['**/!(*spec).js'],
+        files: [
+          'app/**/!(*spec).js',
+          'app/templates/**/*.html'
+        ],
         tasks: ['copy']
       }
     }

@@ -5,9 +5,9 @@ describe('activity resource', function() {
   var $rootScope;
   var deferred;
 
-  beforeEach(module('resources.activity'));
-
   beforeEach(function() {
+    module('resources.activity');
+
     inject(function($injector) {
       $httpBackend = $injector.get('$httpBackend');
       activityResource = $injector.get('activityResource');
@@ -20,16 +20,16 @@ describe('activity resource', function() {
 
     var activities = [
       {
-        amount: "1.00",
-        concept: "activity",
+        amount: '1.00',
+        concept: 'activity',
         date: {
-          date: "2017-01-29 21:11:21.000000",
-          timezone: "UTC",
+          date: '2017-01-29 21:11:21.000000',
+          timezone: 'UTC',
           timezone_type: 3
         },
         dateValue: {
-          date: "2017-01-29 21:11:12.000000",
-          timezone: "UTC",
+          date: '2017-01-29 21:11:12.000000',
+          timezone: 'UTC',
           timezone_type: 3
         }
       }

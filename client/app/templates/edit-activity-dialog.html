@@ -1,0 +1,19 @@
+<md-dialog aria-label="Edit activity">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit activity</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <edit-activity-directive activity="activity"></edit-activity-directive>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

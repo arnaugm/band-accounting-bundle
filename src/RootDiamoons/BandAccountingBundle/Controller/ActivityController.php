@@ -24,26 +24,42 @@ class ActivityController extends Controller
         $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
 
         $activities = $repository->getActivities();
+        $totals = $this->totals($activities);
 
         $response = new JsonResponse();
         $response->setData(
             array(
                 'activities' => $activities,
-                'total' => $this->sum($activities),
+                'income' => $totals['income'],
+                'expenses' => $totals['expenses'],
+                'total' => $totals['total'],
             )
         );
 
         return $response;
     }
 
-    private function sum($activities)
+    private function totals($activities)
     {
         $total = 0;
+        $income = 0;
+        $expenses = 0;
+
         foreach ($activities as $activity) {
-            $total += $activity['amount'];
+            $amount = $activity['amount'];
+            if ($amount > 0) {
+                $income += $amount;
+            } else {
+                $expenses += -$amount;
+            }
+            $total += $amount;
         }
 
-        return $total;
+        return array(
+            'total' => $total,
+            'income' => $income,
+            'expenses' => $expenses
+        );
     }
 
     public function createAction(Request $request)
