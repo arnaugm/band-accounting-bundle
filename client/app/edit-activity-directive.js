@@ -19,7 +19,8 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
       restrict: 'E',
       templateUrl: 'templates/edit-activity-directive.html',
       scope: {
-        activity: '=?'
+        activity: '=?',
+        index: '=?'
       },
 
       controller: function($scope) {
@@ -34,7 +35,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
         $scope.save = function(e) {
           if ($scope.activity.id) {
             $scope.activity.update().then(function(response) {
-              $rootScope.$broadcast('activityUpdated', $scope.activity);
+              $rootScope.$broadcast('activityUpdated', $scope.activity, $scope.index);
 
             }).catch(function(e) {
               $rootScope.$broadcast('saveError');

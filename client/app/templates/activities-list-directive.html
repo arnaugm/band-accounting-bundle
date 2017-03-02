@@ -1,5 +1,15 @@
 <div flex id="totals">
-    Income: {{ income | currency : '€' }} Expenses: {{ expenses | currency : '€' }} Total: {{ total | currency : '€' }}
+    <ul>
+        <li>
+            Income: <span ng-class="'pos-font'">{{ income | currency : '€' }}</span>
+        </li>
+        <li>
+            Expenses: <span ng-class="'neg-font'">{{ expenses | currency : '€' }}</span>
+        </li>
+        <li>
+            Total: <span ng-class="{ 'pos-font': total >= 0, 'neg-font': total < 0 }">{{ total | currency : '€' }}</span>
+        </li>
+    </ul>
 </div>
 
 <md-toolbar class="md-hue-3">
@@ -24,7 +34,9 @@
 </div>
 
 <md-list>
-    <md-list-item ng-repeat="activity in activities track by activity.id" ng-class="{ pos: activity.amount >= 0, neg: activity.amount < 0 }" ng-click="editActivity($event, $index)">
+    <md-list-item ng-repeat="activity in activities track by activity.id"
+                  ng-class="{ 'pos-row': activity.amount >= 0, 'neg-row': activity.amount < 0 }"
+                  ng-click="editActivity($event, $index)">
         <div layout="row" layout-fill layout-padding>
             <div flex="15" layout="row" layout-align="center">
                 {{ activity.dateValue | date:'dd-MM-yyyy' }}
@@ -36,7 +48,7 @@
                 {{ activity.concept }}
             </div>
             <div flex="15" layout="row" layout-align="end">
-                {{ activity.amount }} €
+                {{ activity.amount | currency : '€' }}
             </div>
         </div>
         <md-divider></md-divider>

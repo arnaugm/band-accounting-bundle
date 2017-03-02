@@ -16,35 +16,33 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           $scope.income = result.income;
           $scope.expenses = result.expenses;
           $scope.activities = result.activities;
-
         }).catch(function(e) {
           console.log('error getting activity list');
-
         });
 
         $rootScope.$on('activitySaved', function(event, activity) {
           $mdToast.showSimple('Activity saved');
           $scope.activities.unshift(activity);
+          updateTotals(activity.amount);
           $mdDialog.hide();
-
         });
 
-        $rootScope.$on('activityUpdated', function(event, activity) {
+        $rootScope.$on('activityUpdated', function(event, activity, index) {
           $mdToast.showSimple('Activity saved');
-          $scope.activities[$scope.activityInEdition] = activity;
+          var oldAmount = $scope.activities[index].amount;
+          $scope.activities[index] = activity;
+          updateTotals(activity.amount, oldAmount);
           $mdDialog.hide();
-
         });
 
         $rootScope.$on('saveError', function(event) {
           $mdToast.showSimple('Error saving activity');
           $mdDialog.hide();
-
         });
 
         $rootScope.newActivity = function($event) {
           $mdDialog.show({
-            controller: ['$scope', '$mdDialog', DialogController],
+            controller: ['$scope', '$mdDialog', dialogController],
             templateUrl: '../templates/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
@@ -56,12 +54,11 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
 
         $scope.customFullscreen = false;
         $scope.editActivity = function($event, $index) {
-          $scope.activityInEdition = $index;
-
           $mdDialog.show({
-            controller: ['$scope', '$mdDialog', 'activity', DialogController],
+            controller: ['$scope', '$mdDialog', 'activity', 'index', dialogController],
             locals: {
-              activity: $scope.activities[$index]
+              activity: $scope.activities[$index],
+              index: $index
             },
             templateUrl: '../templates/edit-activity-dialog.html',
             parent: angular.element(document.body),
@@ -72,17 +69,36 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           })
         };
 
-        function DialogController($scope, $mdDialog, activity) {
+        var dialogController = function($scope, $mdDialog, activity, index) {
           $scope.activity = activity;
+          $scope.index = index;
 
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
-        }
+        };
 
-        function afterShowAnimation() {
+        var afterShowAnimation = function() {
           document.getElementById('activity-concept').focus();
-        }
+        };
+
+        var updateTotals = function(amount, oldValue) {
+          if (oldValue !== undefined) {
+            if (oldValue > 0) {
+              $scope.income -= oldValue;
+            } else {
+              $scope.expenses -= -oldValue
+            }
+            $scope.total -= oldValue;
+          }
+
+          if (amount > 0) {
+            $scope.income += amount;
+          } else {
+            $scope.expenses += -amount
+          }
+          $scope.total += amount;
+        };
 
       }
     };
