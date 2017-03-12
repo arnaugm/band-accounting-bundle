@@ -13,6 +13,7 @@ module.exports = function(config) {
       '../bower_components/angular-animate/angular-animate.js',
       '../bower_components/angular-aria/angular-aria.js',
       '**/*.js',
+      '**/*.html',
       '**/*-spec.js'
     ],
 
@@ -28,13 +29,15 @@ module.exports = function(config) {
       'karma-jasmine',
       'karma-junit-reporter',
       'karma-coverage',
-      'karma-mocha-reporter'
+      'karma-mocha-reporter',
+      'karma-ng-html2js-preprocessor'
     ],
 
     reporters: ['mocha', 'coverage'],
 
     preprocessors: {
-      '**/!(*spec).js': ['coverage']
+      '**/!(*spec).js': ['coverage'],
+      '**/*.html': ['ng-html2js']
     },
 
     coverageReporter: {
@@ -46,6 +49,15 @@ module.exports = function(config) {
     junitReporter: {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
+    },
+
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path, match anything followed by a "/"
+      stripPrefix: '(.*)\/+',
+      // prepend this to the file path
+      prependPrefix: 'templates/',
+
+      moduleName: 'templates'
     }
 
   });

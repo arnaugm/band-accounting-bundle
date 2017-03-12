@@ -10,6 +10,7 @@ describe('activities list directive', function() {
   beforeEach(function() {
     module('directives.activitiesList');
     module('models.activity');
+    module('templates');
 
     inject(function(_$compile_, _$rootScope_, _$httpBackend_, _activityModel_) {
       $compile = _$compile_;
@@ -17,10 +18,6 @@ describe('activities list directive', function() {
       $httpBackend = _$httpBackend_;
       Activity = _activityModel_;
     });
-
-    $httpBackend
-      .whenGET('templates/activities-list-directive.html')
-      .respond(200, '');
   });
 
   var getCompiledElement = function() {

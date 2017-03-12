@@ -13,7 +13,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
     };
   })
 
-  .directive('editActivityDirective', ['activityModel', 'activityResource', '$rootScope', function(ActivityModel, activityResource, $rootScope) {
+  .directive('editActivity', ['activityModel', 'activityResource', '$rootScope', function(ActivityModel, activityResource, $rootScope) {
 
     return {
       restrict: 'E',
@@ -22,8 +22,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
         activity: '=?',
         index: '=?'
       },
-
-      controller: function($scope) {
+      controller: ['$scope', function($scope) {
         if (!$scope.activity) {
           $scope.activity = new ActivityModel();
 
@@ -63,6 +62,6 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
             $scope.activity.dateValue
           );
         }
-      }
+      }]
     };
   }]);

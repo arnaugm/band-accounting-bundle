@@ -8,7 +8,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
       restrict: 'E',
       templateUrl: 'templates/activities-list-directive.html',
       scope: {},
-      controller: function($scope) {
+      controller: ['$scope', function($scope) {
         $scope.activities = [];
 
         activityResource.get().then(function(result) {
@@ -43,7 +43,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $rootScope.newActivity = function($event) {
           $mdDialog.show({
             controller: ['$scope', '$mdDialog', dialogController],
-            templateUrl: '../templates/edit-activity-dialog.html',
+            templateUrl: 'templates/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -60,7 +60,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
               activity: $scope.activities[$index],
               index: $index
             },
-            templateUrl: '../templates/edit-activity-dialog.html',
+            templateUrl: 'templates/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -99,7 +99,6 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           }
           $scope.total += amount;
         };
-
-      }
+      }]
     };
   }]);

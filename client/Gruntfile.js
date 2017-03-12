@@ -53,7 +53,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             flatten: true,
-            src: ['app/templates/**/*.html'],
+            src: ['app/**/*.html'],
             dest: '../web/templates/'
           },
           {
