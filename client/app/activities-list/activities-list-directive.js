@@ -12,10 +12,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $scope.activities = [];
 
         activityResource.get().then(function(result) {
-          $scope.total = result.total;
-          $scope.income = result.income;
-          $scope.expenses = result.expenses;
-          $scope.activities = result.activities;
+          buildActivitiesListScope(result);
         }).catch(function(e) {
           console.log('error getting activity list');
         });
@@ -38,6 +35,18 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $rootScope.$on('saveError', function(event) {
           $mdToast.showSimple('Error saving activity');
           $mdDialog.hide();
+        });
+
+        $rootScope.$on('currentTermFilter', function(event) {
+          getActivitiesWithFilter('last');
+        });
+
+        $rootScope.$on('twoTermsFilter', function(event) {
+          getActivitiesWithFilter('2term');
+        });
+
+        $rootScope.$on('lastYearFilter', function(event) {
+          getActivitiesWithFilter('year');
         });
 
         $rootScope.newActivity = function($event) {
@@ -98,6 +107,21 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
             $scope.expenses += -amount
           }
           $scope.total += amount;
+        };
+
+        var getActivitiesWithFilter = function(filter) {
+          activityResource.get(filter).then(function(result) {
+            buildActivitiesListScope(result);
+          }).catch(function(e) {
+            console.log('error getting activity list with filter ' + filter);
+          });
+        };
+
+        var buildActivitiesListScope = function(result) {
+          $scope.total = result.total;
+          $scope.income = result.income;
+          $scope.expenses = result.expenses;
+          $scope.activities = result.activities;
         };
       }]
     };

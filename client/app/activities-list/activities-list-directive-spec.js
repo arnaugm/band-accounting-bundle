@@ -6,17 +6,20 @@ describe('activities list directive', function() {
   var directiveElem;
   var elementScope;
   var Activity;
+  var activityResource;
 
   beforeEach(function() {
     module('directives.activitiesList');
     module('models.activity');
+    module('resources.activity');
     module('templates');
 
-    inject(function(_$compile_, _$rootScope_, _$httpBackend_, _activityModel_) {
+    inject(function(_$compile_, _$rootScope_, _$httpBackend_, _activityModel_, _activityResource_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $httpBackend = _$httpBackend_;
       Activity = _activityModel_;
+      activityResource = _activityResource_;
     });
   });
 
@@ -148,6 +151,42 @@ describe('activities list directive', function() {
     expect(elementScope.income).toEqual(0);
     expect(elementScope.expenses).toEqual(2);
     expect(elementScope.total).toEqual(-2);
+  });
+
+  it('should refresh activities list with current term activities when using "Current term" in the filter', function() {
+    spyOn(activityResource, 'get').and.callThrough();
+    var activities = {
+      activities: []
+    };
+    elementScope = getScope(activities);
+
+    $rootScope.$broadcast('currentTermFilter');
+
+    expect(activityResource.get).toHaveBeenCalledWith('last');
+  });
+
+  it('should refresh activities list with last two term activities when using "2 terms" in the filter', function() {
+    spyOn(activityResource, 'get').and.callThrough();
+    var activities = {
+      activities: []
+    };
+    elementScope = getScope(activities);
+
+    $rootScope.$broadcast('twoTermsFilter');
+
+    expect(activityResource.get).toHaveBeenCalledWith('2term');
+  });
+
+  it('should refresh activities list with last year activities when using "Last year" in the filter', function() {
+    spyOn(activityResource, 'get').and.callThrough();
+    var activities = {
+      activities: []
+    };
+    elementScope = getScope(activities);
+
+    $rootScope.$broadcast('lastYearFilter');
+
+    expect(activityResource.get).toHaveBeenCalledWith('year');
   });
 
 });

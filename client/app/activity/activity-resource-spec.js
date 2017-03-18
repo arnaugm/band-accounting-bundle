@@ -16,6 +16,11 @@ describe('activity resource', function() {
     });
   });
 
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation(false);
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
   describe('#get', function() {
 
     var activities = [
@@ -40,11 +45,11 @@ describe('activity resource', function() {
         .whenGET('/activities')
         .respond(200, {activities: activities});
 
-      var promise = activityResource.get(1);
+      var promise = activityResource.get();
       $httpBackend.flush();
 
       promise.then(function(result) {
-        expect(activities).not.toBe(undefined);
+        expect(result.activities.length).toBe(1);
         done();
       });
 
@@ -68,6 +73,27 @@ describe('activity resource', function() {
       });
 
       $rootScope.$apply();
+    });
+
+    it('should call the resource with the query parameter "term=1"', function() {
+      $httpBackend.expectGET('/activities?term=1').respond({});
+
+      activityResource.get('1');
+      $httpBackend.flush();
+    });
+
+    it('should call the resource with the query parameter "term=2"', function() {
+      $httpBackend.expectGET('/activities?term=2').respond({});
+
+      activityResource.get('2');
+      $httpBackend.flush();
+    });
+
+    it('should call the resource with the query parameter "term=3"', function() {
+      $httpBackend.expectGET('/activities?term=3').respond({});
+
+      activityResource.get('3');
+      $httpBackend.flush();
     });
   });
 });

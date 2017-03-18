@@ -13,15 +13,18 @@ angular.module('resources.activity', ['ngResource'])
       }
     };
 
-    activityResource.get = function() {
+    activityResource.get = function(filter) {
       var deferred = $q.defer();
-      this.api.activities.get().$promise.then(function(result) {
-        result.activities.forEach(function(activity) {
-          activity.amount = parseFloat(activity.amount);
-          activity.date = transformTimezone(activity.date);
-          activity.dateValue = transformTimezone(activity.dateValue);
-        });
-        deferred.resolve(result);
+      var queryParams = filter ? {term: filter} : {};
+      this.api.activities.get(queryParams).$promise.then(function(result) {
+        if(result.activities) {
+          result.activities.forEach(function(activity) {
+            activity.amount = parseFloat(activity.amount);
+            activity.date = transformTimezone(activity.date);
+            activity.dateValue = transformTimezone(activity.dateValue);
+          });
+          deferred.resolve(result);
+        }
       });
 
       return deferred.promise;

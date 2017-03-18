@@ -1,18 +1,21 @@
 'use strict';
 
-angular.module('directives.menuOptions', ['ngMaterial'])
+angular.module('directives.menuOptions', [])
 
-  .directive('menuOptions', ['$mdMenu', function($mdMenu) {
+  .directive('menuOptions', ['$rootScope', function($rootScope) {
 
     return {
       restrict: 'E',
       templateUrl: 'templates/menu-options-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
-        $scope.openMenu = function() {
-          $scope.test = 1;
+        $scope.openMenu = function($mdMenu, $event) {
+          $mdMenu.open($event);
         };
 
+        $scope.currentTerm = function() {
+          $rootScope.$broadcast('currentTermFilter');
+        }
       }]
     };
   }]);

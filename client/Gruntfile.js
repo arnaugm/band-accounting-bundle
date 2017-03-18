@@ -70,7 +70,7 @@ module.exports = function (grunt) {
       scripts: {
         files: [
           'app/**/!(*spec).js',
-          'app/templates/**/*.html',
+          'app/**/*.html',
           'app/styles/**/*.css'
         ],
         tasks: ['copy']

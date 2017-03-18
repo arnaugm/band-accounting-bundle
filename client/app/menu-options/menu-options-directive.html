@@ -1,28 +1,24 @@
 <div class="menu">
-    asdaf
-    <!--<md-menu>-->
-        <!--<md-button aria-label="Options" class="md-icon-button" ng-click="alert('options')">-->
-            <!--<i class="material-icons">menu</i>-->
-        <!--</md-button>-->
-        <!--<md-menu-content width="4">-->
-            <!--<md-menu-item>-->
-                <!--<md-button ng-click="redial($event)">-->
-                    <!--<md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>-->
-                    <!--Redial-->
-                <!--</md-button>-->
-            <!--</md-menu-item>-->
-            <!--<md-menu-item>-->
-                <!--<md-button disabled="disabled" ng-click="">-->
-                    <!--<md-icon md-svg-icon="call:voicemail"></md-icon>-->
-                    <!--Check voicemail-->
-                <!--</md-button>-->
-            <!--</md-menu-item>-->
-            <!--<md-menu-divider></md-menu-divider>-->
-            <!--<md-menu-item>-->
-                <!--<md-button ng-click="">-->
-                <!--</md-button>-->
-            <!--</md-menu-item>-->
-        <!--</md-menu-content>-->
-    <!--</md-menu>-->
-    <!--<a href="#" ng-click="openMenu()"><i class="material-icons">menu</i></a>-->
+    <md-menu>
+        <md-button aria-label="Options" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+            <i class="material-icons">menu</i>
+        </md-button>
+        <md-menu-content width="4">
+            <md-menu-item>
+                <md-button ng-click="currentTerm($event)">
+                    Current term
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button ng-click="">
+                    2 terms
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button ng-click="">
+                    Last year
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
 </div>
