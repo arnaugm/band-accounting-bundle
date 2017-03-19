@@ -10,6 +10,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.activities = [];
+        $scope.status = 'PENDING';
 
         activityResource.get().then(function(result) {
           buildActivitiesListScope(result);
@@ -32,7 +33,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           $mdDialog.hide();
         });
 
-        $rootScope.$on('saveError', function(event) {
+        $rootScope.$on('saveError', function(event, args) {
           $mdToast.showSimple('Error saving activity');
           $mdDialog.hide();
         });
@@ -122,6 +123,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
           $scope.income = result.income;
           $scope.expenses = result.expenses;
           $scope.activities = result.activities;
+          $scope.status = 'COMPLETE';
         };
       }]
     };

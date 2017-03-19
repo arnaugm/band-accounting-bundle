@@ -1,11 +1,12 @@
 # This file is a "template" of what your parameters.yml file should look like
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_driver:        pdo_sqlite
+    database_path:          "%kernel.root_dir%/../test_db/activities.db"
+    database_name:          band_accounting
+    database_user:          ~
+    database_password:      ~
+    database_charset:       UTF8
+
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 

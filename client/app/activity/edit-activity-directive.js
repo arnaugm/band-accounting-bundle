@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('directives.editActivity', ['models.activity', 'resources.activity'])
+angular.module('directives.editActivity', ['models.activity', 'resources.activity', 'ngMaterial'])
 
   .config(function($mdDateLocaleProvider) {
 
@@ -31,7 +31,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
 
         }
 
-        $scope.save = function(e) {
+        $scope.save = function() {
           if ($scope.activity.id) {
             $scope.activity.update().then(function(response) {
               $rootScope.$broadcast('activityUpdated', $scope.activity, $scope.index);
@@ -43,12 +43,16 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
 
           } else {
             $scope.activity.save().then(function(response) {
+              if (response.id === undefined) {
+                $rootScope.$broadcast('saveError', {message: 'wrong response: ' + JSON.stringify(response)});
+                return;
+              }
               $scope.activity.id = response.id;
               $scope.activity.date = new Date(response.date.date);
               $rootScope.$broadcast('activitySaved', $scope.activity);
 
-            }).catch(function(e) {
-              $rootScope.$broadcast('saveError');
+            }).catch(function(error) {
+              $rootScope.$broadcast('saveError', error.data.message);
 
             });
           }

@@ -5,6 +5,7 @@ app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 bin/
+test_db/
 bower_components/
 coverage/
 node_modules/
@@ -13,4 +14,3 @@ web/bundles/
 web/css/
 web/js/
 web/templates/
-web/vendor/
