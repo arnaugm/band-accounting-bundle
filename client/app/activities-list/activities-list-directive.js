@@ -14,8 +14,11 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
 
         activityResource.get().then(function(result) {
           buildActivitiesListScope(result);
-        }).catch(function(e) {
+
+        }).catch(function(error) {
           console.log('error getting activity list');
+          $scope.status = 'COMPLETE';
+
         });
 
         $rootScope.$on('activitySaved', function(event, activity) {
@@ -39,15 +42,15 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         });
 
         $rootScope.$on('currentTermFilter', function(event) {
-          getActivitiesWithFilter('last');
+          getActivitiesWithFilter('1');
         });
 
         $rootScope.$on('twoTermsFilter', function(event) {
-          getActivitiesWithFilter('2term');
+          getActivitiesWithFilter('2');
         });
 
         $rootScope.$on('lastYearFilter', function(event) {
-          getActivitiesWithFilter('year');
+          getActivitiesWithFilter('3');
         });
 
         $rootScope.newActivity = function($event) {

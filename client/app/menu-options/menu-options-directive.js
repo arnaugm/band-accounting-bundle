@@ -15,7 +15,15 @@ angular.module('directives.menuOptions', [])
 
         $scope.currentTerm = function() {
           $rootScope.$broadcast('currentTermFilter');
-        }
+        };
+
+        $scope.twoTerms = function() {
+          $rootScope.$broadcast('twoTermsFilter');
+        };
+
+        $scope.lastYear = function() {
+          $rootScope.$broadcast('lastYearFilter');
+        };
       }]
     };
   }]);

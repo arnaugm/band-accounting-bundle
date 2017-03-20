@@ -25,6 +25,8 @@ angular.module('resources.activity', ['ngResource'])
           });
           deferred.resolve(result);
         }
+      }).catch(function(error) {
+        deferred.reject(error.data);
       });
 
       return deferred.promise;

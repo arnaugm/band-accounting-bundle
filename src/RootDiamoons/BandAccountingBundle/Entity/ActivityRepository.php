@@ -11,7 +11,7 @@ use Doctrine\ORM\Query;
  */
 class ActivityRepository extends EntityRepository
 {
-    public function getActivities()
+    public function getActivities($filter = null)
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a')

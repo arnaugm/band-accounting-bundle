@@ -36,6 +36,11 @@ grunt watch
 
 ## Test
 
+### Backend
+```
+vendor/phpunit/phpunit/phpunit -c app/
+```
+
 ### Frontend
 ```
 npm test

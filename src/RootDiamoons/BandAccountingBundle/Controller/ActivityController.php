@@ -7,9 +7,6 @@ use RootDiamoons\BandAccountingBundle\Entity\Activity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class ActivityController extends Controller
 {
@@ -18,12 +15,13 @@ class ActivityController extends Controller
         return $this->render('RootDiamoonsBandAccountingBundle:Activity:index.html.twig');
     }
 
-    public function listAction()
+    public function listAction(Request $request)
     {
+        $filter = $request->query->get('term');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
 
-        $activities = $repository->getActivities();
+        $activities = $repository->getActivities($filter);
         $totals = $this->totals($activities);
 
         $response = new JsonResponse();

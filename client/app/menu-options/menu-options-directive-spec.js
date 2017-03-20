@@ -59,7 +59,29 @@ describe('menu directive', function() {
       elementScope.currentTerm();
 
       expect($rootScope.$broadcast).toHaveBeenCalledWith('currentTermFilter')
-    })
-  })
+    });
+  });
+
+  describe('#twoTermsFilter', function() {
+    it('should trigger twoTermsFilter event', function() {
+      elementScope = getScope();
+      spyOn($rootScope, '$broadcast');
+
+      elementScope.twoTerms();
+
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('twoTermsFilter')
+    });
+  });
+
+  describe('#lastYearFilter', function() {
+    it('should trigger lastYearFilter event', function() {
+      elementScope = getScope();
+      spyOn($rootScope, '$broadcast');
+
+      elementScope.lastYear();
+
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('lastYearFilter')
+    });
+  });
 
 });

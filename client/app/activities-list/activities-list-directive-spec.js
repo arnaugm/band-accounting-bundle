@@ -162,7 +162,7 @@ describe('activities list directive', function() {
 
     $rootScope.$broadcast('currentTermFilter');
 
-    expect(activityResource.get).toHaveBeenCalledWith('last');
+    expect(activityResource.get).toHaveBeenCalledWith('1');
   });
 
   it('should refresh activities list with last two term activities when using "2 terms" in the filter', function() {
@@ -174,7 +174,7 @@ describe('activities list directive', function() {
 
     $rootScope.$broadcast('twoTermsFilter');
 
-    expect(activityResource.get).toHaveBeenCalledWith('2term');
+    expect(activityResource.get).toHaveBeenCalledWith('2');
   });
 
   it('should refresh activities list with last year activities when using "Last year" in the filter', function() {
@@ -186,7 +186,7 @@ describe('activities list directive', function() {
 
     $rootScope.$broadcast('lastYearFilter');
 
-    expect(activityResource.get).toHaveBeenCalledWith('year');
+    expect(activityResource.get).toHaveBeenCalledWith('3');
   });
 
 });

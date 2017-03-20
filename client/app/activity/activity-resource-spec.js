@@ -56,6 +56,22 @@ describe('activity resource', function() {
       $rootScope.$apply();
     });
 
+    it('should notify in case of retrieve error', function(done) {
+      $httpBackend
+        .whenGET('/activities')
+        .respond(500, {message: 'something went wrong'});
+
+      var promise = activityResource.get();
+      $httpBackend.flush();
+
+      promise.then(function() {}).catch(function(error) {
+        expect(error).toEqual({message: 'something went wrong'});
+        done();
+      });
+
+      $rootScope.$apply();
+    });
+
     it('should format activities properly', function(done) {
       $httpBackend
         .whenGET('/activities')

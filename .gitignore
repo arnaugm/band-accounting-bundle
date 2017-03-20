@@ -6,6 +6,7 @@ app/logs/*
 !app/logs/.gitkeep
 bin/
 test_db/
+!test_db/.gitkeep
 bower_components/
 coverage/
 node_modules/
