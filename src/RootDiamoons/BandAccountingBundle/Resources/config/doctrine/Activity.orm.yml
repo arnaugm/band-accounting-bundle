@@ -1,7 +1,7 @@
 RootDiamoons\BandAccountingBundle\Entity\Activity:
     type: entity
     table: activities
-    repositoryClass: RootDiamoons\BandAccountingBundle\Entity\ActivityRepository
+    repositoryClass: RootDiamoons\BandAccountingBundle\Repository\ActivityRepository
     id:
         id:
             type: integer

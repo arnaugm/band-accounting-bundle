@@ -1,6 +1,6 @@
 <?php
 
-namespace RootDiamoons\BandAccountingBundle\Entity;
+namespace RootDiamoons\BandAccountingBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;

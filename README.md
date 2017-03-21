@@ -38,7 +38,7 @@ grunt watch
 
 ### Backend
 ```
-vendor/phpunit/phpunit/phpunit -c app/
+bin/phpunit
 ```
 
 ### Frontend
