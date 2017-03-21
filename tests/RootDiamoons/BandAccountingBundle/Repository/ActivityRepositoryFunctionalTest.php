@@ -4,7 +4,7 @@ namespace Tests\RootDiamoons\BandAccountingBundle\Repository;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ActivityRepositoryTest extends KernelTestCase
+class ActivityRepositoryFunctionalTest extends KernelTestCase
 {
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -34,12 +34,12 @@ class ActivityRepositoryTest extends KernelTestCase
         $this->em = null; // avoid memory leaks
     }
 
-    public function testSearchByCategoryName()
+    public function testGetActivities()
     {
-        $products = $this->em
-            ->getRepository('BandAccountingBundle:Activity')
+        $activities = $this->em
+            ->getRepository('RootDiamoonsBandAccountingBundle:Activity')
             ->getActivities();
 
-        $this->assertCount(1, $products);
+        $this->assertCount(0, $activities);
     }
 }

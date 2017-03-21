@@ -7,17 +7,16 @@
          colors="true"
          bootstrap="app/bootstrap.php.cache"
 >
+
+    <php>
+        <server name="KERNEL_DIR" value="app/" />
+    </php>
+
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-
-    <!--
-    <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
-    </php>
-    -->
 
     <filter>
         <whitelist>
