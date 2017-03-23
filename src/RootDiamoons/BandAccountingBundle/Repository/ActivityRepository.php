@@ -14,8 +14,14 @@ class ActivityRepository extends EntityRepository
     public function getActivities($filter = null)
     {
         $qb = $this->createQueryBuilder('a')
-            ->select('a')
-//            ->setMaxResults(10)
+            ->select('a');
+
+        if (!is_null($filter)) {
+            $qb
+                ->where('a.dateValue > 2');
+        }
+
+        $qb
             ->orderBy('a.dateValue', 'DESC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
