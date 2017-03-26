@@ -20,8 +20,9 @@ class ActivityController extends Controller
         $filter = $request->query->get('term');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
+        $terms = $this->get('root_diamoons_band_accounting.terms');
 
-        $activities = $repository->getActivities($filter);
+        $activities = $repository->getActivities($terms->getInitialDateFromFilter($filter));
         $totals = $this->totals($activities);
 
         $response = new JsonResponse();

@@ -11,14 +11,14 @@ use Doctrine\ORM\Query;
  */
 class ActivityRepository extends EntityRepository
 {
-    public function getActivities($filter = null)
+    public function getActivities($sinceDate = null)
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a');
 
-        if (!is_null($filter)) {
+        if (!is_null($sinceDate)) {
             $qb
-                ->where('a.dateValue > 2');
+                ->where('a.dateValue >= '.$sinceDate);
         }
 
         $qb

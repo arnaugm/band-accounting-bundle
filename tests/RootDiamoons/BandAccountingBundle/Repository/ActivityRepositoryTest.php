@@ -3,10 +3,10 @@
 namespace Tests\RootDiamoons\BandAccountingBundle\Repository;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use RootDiamoons\BandAccountingBundle\Repository\ActivityRepository;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ActivityRepositoryTest extends KernelTestCase
+class ActivityRepositoryTest extends TestCase
 {
     /**
      * {@inheritDoc}
@@ -16,7 +16,7 @@ class ActivityRepositoryTest extends KernelTestCase
         m::close();
     }
 
-    public function testGetActivities()
+    public function testGetAllActivities()
     {
         $qb = m::mock('Doctrine\ORM\QueryBuilder')
             ->shouldReceive('select')
@@ -43,14 +43,14 @@ class ActivityRepositoryTest extends KernelTestCase
         $repo->getActivities();
     }
 
-    public function testGetLastTermActivities()
+    public function testGetActivitiesSinceDate()
     {
         $qb = m::mock('Doctrine\ORM\QueryBuilder')
             ->shouldReceive('select')
             ->andReturn(m::self())
             ->shouldReceive('from')
             ->andReturn(m::self())
-            ->shouldReceive('where')->with('a.dateValue > 2')
+            ->shouldReceive('where')->with('a.dateValue >= 2017-04-01')
             ->once()
             ->andReturn(m::self())
             ->shouldReceive('orderBy')
@@ -70,6 +70,7 @@ class ActivityRepositoryTest extends KernelTestCase
         $classMetaMock = m::mock('Doctrine\ORM\Mapping\ClassMetadata');
         $repo = new ActivityRepository($emMock, $classMetaMock);
 
-        $repo->getActivities(1);
+        $repo->getActivities('2017-04-01');
     }
+
 }
