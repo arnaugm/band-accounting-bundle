@@ -52,68 +52,46 @@ class TermsTest extends TestCase
             ->getMock();
     }
 
-    public function testGetInitialDateFromCurrentTermFilterInTheFirstTerm()
+    /**
+     * @dataProvider termsAndFiltersProvider
+     * @param $currentTerm
+     * @param $filter
+     * @param $expectedInitialDate
+     * @param $expectedFilterMessage
+     * @param $expectedTermMessage
+     */
+    public function testGetInitialDateFromFilter($filter, $currentTerm, $expectedInitialDate, $expectedFilterMessage, $expectedTermMessage)
     {
-        $this->setupTermMock(1);
+        $this->setupTermMock($currentTerm);
 
-        $initialDate = $this->terms->getInitialDateFromFilter(1);
+        $initialDate = $this->terms->getInitialDateFromFilter($filter);
 
         $this->assertSame(
-            '2017-01-01',
+            $expectedInitialDate,
             $initialDate,
-            'Initial date does not correspond with current term filter in the first term'
+            'Initial date does not correspond with ' . $expectedFilterMessage . ' when we are in the ' . $expectedTermMessage . ' of the year'
         );
     }
 
-    public function testGetInitialDateFromCurrentTermFilterInTheSecondTerm()
+    public function termsAndFiltersProvider()
     {
-        $this->setupTermMock(2);
-
-        $initialDate = $this->terms->getInitialDateFromFilter(1);
-
-        $this->assertSame(
-            '2017-04-01',
-            $initialDate,
-            'Initial date does not correspond with current term filter in the second term'
-        );
-    }
-
-    public function testGetInitialDateFromCurrentTermFilterInTheThirdTerm()
-    {
-        $this->setupTermMock(3);
-
-        $initialDate = $this->terms->getInitialDateFromFilter(1);
-
-        $this->assertSame(
-            '2017-07-01',
-            $initialDate,
-            'Initial date does not correspond with current term filter in the third term'
-        );
-    }
-
-    public function testGetInitialDateFromCurrentTermFilterInTheFourthTerm()
-    {
-        $this->setupTermMock(4);
-
-        $initialDate = $this->terms->getInitialDateFromFilter(1);
-
-        $this->assertSame(
-            '2017-10-01',
-            $initialDate,
-            'Initial date does not correspond with current term filter in the fourth term'
-        );
-    }
-
-    public function testGetInitialDateFromTwoTermsFilterInTheFirstTerm()
-    {
-        $this->setupTermMock(1);
-
-        $initialDate = $this->terms->getInitialDateFromFilter(2);
-
-        $this->assertSame(
-            '2016-10-01',
-            $initialDate,
-            'Initial date does not correspond with two terms filter in the first term'
+        return array(
+            array(1, 1, '2017-01-01', 'current term filter', 'first term'),
+            array(1, 2, '2017-04-01', 'current term filter', 'second term'),
+            array(1, 3, '2017-07-01', 'current term filter', 'third term'),
+            array(1, 4, '2017-10-01', 'current term filter', 'fourth term'),
+            array(2, 1, '2016-10-01', 'two terms filter', 'first term'),
+            array(2, 2, '2017-01-01', 'two terms filter', 'second term'),
+            array(2, 3, '2017-04-01', 'two terms filter', 'third term'),
+            array(2, 4, '2017-07-01', 'two terms filter', 'fourth term'),
+            array(3, 1, '2016-07-01', 'three terms filter', 'first term'),
+            array(3, 2, '2016-10-01', 'three terms filter', 'second term'),
+            array(3, 3, '2017-01-01', 'three terms filter', 'third term'),
+            array(3, 4, '2017-04-01', 'three terms filter', 'fourth term'),
+            array(4, 1, '2016-04-01', 'four terms filter', 'first term'),
+            array(4, 2, '2016-07-01', 'four terms filter', 'second term'),
+            array(4, 3, '2016-10-01', 'four terms filter', 'third term'),
+            array(4, 4, '2017-01-01', 'four terms filter', 'fourth term'),
         );
     }
 

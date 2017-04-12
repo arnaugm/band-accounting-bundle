@@ -111,5 +111,12 @@ describe('activity resource', function() {
       activityResource.get('3');
       $httpBackend.flush();
     });
+
+    it('should call the resource with the query parameter "term=4"', function() {
+      $httpBackend.expectGET('/activities?term=4').respond({});
+
+      activityResource.get('4');
+      $httpBackend.flush();
+    });
   });
 });

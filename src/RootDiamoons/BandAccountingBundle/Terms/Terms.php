@@ -20,10 +20,10 @@ class Terms
 
     public function getInitialDateFromFilter($filter)
     {
-        return $this->getLastTermsStart($filter);
+        return $this->getGivenFilterTermStart($filter);
     }
 
-    private function getLastTermsStart($numTerms)
+    private function getGivenFilterTermStart($numTerms)
     {
         $currentMonth = intval($this->getCurrentMonth());
         $lastTermStart = $this->getLastTermsStartFromGivenTerm($numTerms, $currentMonth / 12 * 4);

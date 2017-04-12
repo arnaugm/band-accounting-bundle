@@ -17,11 +17,11 @@ class ActivityRepository extends EntityRepository
             ->select('a');
 
         if (!is_null($sinceDate)) {
-            $qb
+            $qb = $qb
                 ->where('a.dateValue >= '.$sinceDate);
         }
 
-        $qb
+        $qb = $qb
             ->orderBy('a.dateValue', 'DESC')
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
