@@ -33,7 +33,7 @@ describe('activities list directive', function() {
 
   var getScope = function(activities) {
     $httpBackend
-      .whenGET('/activities')
+      .whenGET('/activities?term=2')
       .respond(200, activities);
     directiveElem = getCompiledElement();
     $httpBackend.flush();
@@ -44,7 +44,7 @@ describe('activities list directive', function() {
 
   it('should render the directive correctly', function() {
     $httpBackend
-      .whenGET('/activities')
+      .whenGET('/activities?term=2')
       .respond(200, '');
     directiveElem = getCompiledElement();
 
@@ -165,7 +165,7 @@ describe('activities list directive', function() {
     expect(activityResource.get).toHaveBeenCalledWith('1');
   });
 
-  it('should refresh activities list with last two term activities when using "2 terms" in the filter', function() {
+  it('should refresh activities list with last two terms activities when using "2 terms" in the filter', function() {
     spyOn(activityResource, 'get').and.callThrough();
     var activities = {
       activities: []
@@ -177,16 +177,39 @@ describe('activities list directive', function() {
     expect(activityResource.get).toHaveBeenCalledWith('2');
   });
 
-  it('should refresh activities list with last year activities when using "Last year" in the filter', function() {
+  it('should refresh activities list with last three terms activities when using "3 terms" in the filter', function() {
     spyOn(activityResource, 'get').and.callThrough();
     var activities = {
       activities: []
     };
     elementScope = getScope(activities);
 
-    $rootScope.$broadcast('lastYearFilter');
+    $rootScope.$broadcast('threeTermsFilter');
 
     expect(activityResource.get).toHaveBeenCalledWith('3');
   });
 
+  it('should refresh activities list with last four terms activities when using "4 terms" in the filter', function() {
+    spyOn(activityResource, 'get').and.callThrough();
+    var activities = {
+      activities: []
+    };
+    elementScope = getScope(activities);
+
+    $rootScope.$broadcast('fourTermsFilter');
+
+    expect(activityResource.get).toHaveBeenCalledWith('4');
+  });
+
+  it('should refresh activities list with all activities when using "All entries" in the filter', function() {
+    spyOn(activityResource, 'get').and.callThrough();
+    var activities = {
+      activities: []
+    };
+    elementScope = getScope(activities);
+
+    $rootScope.$broadcast('allEntriesFilter');
+
+    expect(activityResource.get).toHaveBeenCalledWith(undefined);
+  });
 });

@@ -64,8 +64,24 @@ describe('activity resource', function() {
       var promise = activityResource.get();
       $httpBackend.flush();
 
-      promise.then(function() {}).catch(function(error) {
+      promise.catch(function(error) {
         expect(error).toEqual({message: 'something went wrong'});
+        done();
+      });
+
+      $rootScope.$apply();
+    });
+
+    it('should notify in case of no activities', function(done) {
+      $httpBackend
+        .whenGET('/activities')
+        .respond(200, {activities: {}});
+
+      var promise = activityResource.get();
+      $httpBackend.flush();
+
+      promise.then(function(result) {
+        expect(result.activities).toEqual([]);
         done();
       });
 

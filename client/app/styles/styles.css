@@ -35,3 +35,7 @@
 .neg-font {
     color: rgb(244, 67, 54)
 }
+
+.empty-list {
+    font-style: italic;
+}

@@ -73,14 +73,36 @@ describe('menu directive', function() {
     });
   });
 
-  describe('#lastYearFilter', function() {
-    it('should trigger lastYearFilter event', function() {
+  describe('#threeTermsFilter', function() {
+    it('should trigger threeTermsFilter event', function() {
       elementScope = getScope();
       spyOn($rootScope, '$broadcast');
 
-      elementScope.lastYear();
+      elementScope.threeTerms();
 
-      expect($rootScope.$broadcast).toHaveBeenCalledWith('lastYearFilter')
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('threeTermsFilter')
+    });
+  });
+
+  describe('#fourTermsFilter', function() {
+    it('should trigger fourTermsFilter event', function() {
+      elementScope = getScope();
+      spyOn($rootScope, '$broadcast');
+
+      elementScope.fourTerms();
+
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('fourTermsFilter')
+    });
+  });
+
+  describe('#allEntriesFilter', function() {
+    it('should trigger allEntriesFilter event', function() {
+      elementScope = getScope();
+      spyOn($rootScope, '$broadcast');
+
+      elementScope.allEntries();
+
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('allEntriesFilter')
     });
   });
 

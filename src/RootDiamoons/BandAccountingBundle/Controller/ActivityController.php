@@ -22,7 +22,11 @@ class ActivityController extends Controller
         $repository = $em->getRepository('RootDiamoonsBandAccountingBundle:Activity');
         $terms = $this->get('root_diamoons_band_accounting.terms');
 
-        $activities = $repository->getActivities($terms->getInitialDateFromFilter($filter));
+        $sinceDate = null;
+        if(!is_null($filter)) {
+            $sinceDate = $terms->getInitialDateFromFilter($filter);
+        }
+        $activities = $repository->getActivities($sinceDate);
         $totals = $this->totals($activities);
 
         $response = new JsonResponse();

@@ -18,7 +18,7 @@ class ActivityRepository extends EntityRepository
 
         if (!is_null($sinceDate)) {
             $qb = $qb
-                ->where('a.dateValue >= '.$sinceDate);
+                ->where("a.dateValue >= '$sinceDate'");
         }
 
         $qb = $qb

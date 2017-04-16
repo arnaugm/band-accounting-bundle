@@ -21,8 +21,16 @@ angular.module('directives.menuOptions', [])
           $rootScope.$broadcast('twoTermsFilter');
         };
 
-        $scope.lastYear = function() {
-          $rootScope.$broadcast('lastYearFilter');
+        $scope.threeTerms = function() {
+          $rootScope.$broadcast('threeTermsFilter');
+        };
+
+        $scope.fourTerms = function() {
+          $rootScope.$broadcast('fourTermsFilter');
+        };
+
+        $scope.allEntries = function() {
+          $rootScope.$broadcast('allEntriesFilter');
         };
       }]
     };

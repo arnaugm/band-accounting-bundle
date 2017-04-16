@@ -50,7 +50,7 @@ class ActivityRepositoryTest extends TestCase
             ->andReturn(m::self())
             ->shouldReceive('from')
             ->andReturn(m::self())
-            ->shouldReceive('where')->with('a.dateValue >= 2017-04-01')
+            ->shouldReceive('where')->with("a.dateValue >= '2017-04-01'")
             ->once()
             ->andReturn(m::self())
             ->shouldReceive('orderBy')

@@ -34,6 +34,12 @@
 </div>
 
 <md-list>
+    <md-list-item ng-show="status == 'COMPLETE' && !activities.length">
+        <div layout="row" layout-fill layout-padding layout-align="center" class="empty-list">
+            No activities available
+        </div>
+    </md-list-item>
+
     <md-list-item ng-repeat="activity in activities track by activity.id"
                   ng-class="{ 'pos-row': activity.amount >= 0, 'neg-row': activity.amount < 0 }"
                   ng-click="editActivity($event, $index)">

@@ -17,12 +17,16 @@ angular.module('resources.activity', ['ngResource'])
       var deferred = $q.defer();
       var queryParams = filter ? {term: filter} : {};
       this.api.activities.get(queryParams).$promise.then(function(result) {
-        if(result.activities) {
-          result.activities.forEach(function(activity) {
-            activity.amount = parseFloat(activity.amount);
-            activity.date = transformTimezone(activity.date);
-            activity.dateValue = transformTimezone(activity.dateValue);
-          });
+        if (result.activities) {
+          if (!Array.isArray(result.activities)) {
+            result.activities = [];
+          } else {
+            result.activities.forEach(function(activity) {
+              activity.amount = parseFloat(activity.amount);
+              activity.date = transformTimezone(activity.date);
+              activity.dateValue = transformTimezone(activity.dateValue);
+            });
+          }
           deferred.resolve(result);
         }
       }).catch(function(error) {

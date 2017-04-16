@@ -15,9 +15,11 @@ class TermsTest extends TestCase
      */
     private $terms;
 
-    /**
-     * {@inheritDoc}
-     */
+    protected function setUp()
+    {
+        $this->terms = new Terms();
+    }
+
     protected function tearDown()
     {
         m::close();
@@ -50,6 +52,14 @@ class TermsTest extends TestCase
             ->shouldReceive('getCurrentYear')
             ->andReturn('2017')
             ->getMock();
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testGetInitialDateFromFilterNull()
+    {
+        $this->terms->getInitialDateFromFilter(null);
     }
 
     /**
@@ -97,7 +107,6 @@ class TermsTest extends TestCase
 
     public function testGetCurrentMonth()
     {
-        $this->terms = new Terms();
         $expectedCurrentMonth = (new DateTime('', new DateTimeZone('UTC')))->format('n');
 
         $currentMonth = $this->terms->getCurrentMonth();
@@ -107,11 +116,72 @@ class TermsTest extends TestCase
 
     public function testGetCurrentYear()
     {
-        $this->terms = new Terms();
         $expectedCurrentYear = (new DateTime('', new DateTimeZone('UTC')))->format('Y');
 
         $currentYear = $this->terms->getCurrentYear();
 
         $this->assertSame($expectedCurrentYear, $currentYear);
+    }
+
+    /**
+     * @dataProvider getTermProvider
+     * @param $month
+     * @param $expectedTerm
+     */
+    public function testGetTerm($month, $expectedTerm)
+    {
+        $term = $this->terms->getTerm($month);
+
+        $this->assertSame(
+            $expectedTerm,
+            $term,
+            'The term does not correspond to the given month'
+        );
+    }
+
+    public function getTermProvider()
+    {
+        return array(
+            array(1, 1),
+            array(2, 1),
+            array(3, 1),
+            array(4, 2),
+            array(5, 2),
+            array(6, 2),
+            array(7, 3),
+            array(8, 3),
+            array(9, 3),
+            array(10, 4),
+            array(11, 4),
+            array(12, 4),
+        );
+    }
+
+    /**
+     * @dataProvider subtractTermsProvider
+     * @param $initialTerm
+     * @param $numTerms
+     * @param $expectedTermAndLoops
+     */
+    public function testSubtractTerms($initialTerm, $numTerms, $expectedTermAndLoops)
+    {
+        $termAndLoops = $this->terms->subtractTerms($initialTerm, $numTerms);
+
+        $this->assertSame(
+            $expectedTermAndLoops,
+            $termAndLoops,
+            'Terms not subtracted correctly'
+        );
+    }
+
+    public function subtractTermsProvider()
+    {
+        return array(
+            array(1, 0, array(1, 0)),
+            array(2, 1, array(1, 0)),
+            array(1, 1, array(4, 1)),
+            array(1, 2, array(3, 1)),
+            array(1, 5, array(4, 2)),
+        );
     }
 }
