@@ -2,7 +2,7 @@
 
 angular.module('directives.menuOptions', [])
 
-  .directive('menuOptions', ['$rootScope', function($rootScope) {
+  .directive('menuOptions', [function() {
 
     return {
       restrict: 'E',
@@ -13,25 +13,6 @@ angular.module('directives.menuOptions', [])
           $mdMenu.open($event);
         };
 
-        $scope.currentTerm = function() {
-          $rootScope.$broadcast('currentTermFilter');
-        };
-
-        $scope.twoTerms = function() {
-          $rootScope.$broadcast('twoTermsFilter');
-        };
-
-        $scope.threeTerms = function() {
-          $rootScope.$broadcast('threeTermsFilter');
-        };
-
-        $scope.fourTerms = function() {
-          $rootScope.$broadcast('fourTermsFilter');
-        };
-
-        $scope.allEntries = function() {
-          $rootScope.$broadcast('allEntriesFilter');
-        };
       }]
     };
   }]);
