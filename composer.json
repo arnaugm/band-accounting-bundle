@@ -1,8 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "license": "MIT",
+    "name": "arnaugm/band-accounting",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
