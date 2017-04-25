@@ -1,0 +1,41 @@
+.menu {
+    padding: 0 20px 0 0;
+}
+
+#activities-spinner {
+    padding: 50px;
+}
+
+#totals ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+#totals li {
+    list-style-type: none;
+}
+
+#activities md-list {
+    padding: 0;
+}
+
+.pos-row {
+    background-color: rgba(0, 255, 0, 0.1)
+}
+
+.pos-font {
+    color: rgb(76, 175, 80)
+}
+
+.neg-row {
+    background-color: rgba(255, 0, 0, 0.1)
+}
+
+.neg-font {
+    color: rgb(244, 67, 54)
+}
+
+.empty-list {
+    font-style: italic;
+}

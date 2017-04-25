@@ -9,25 +9,25 @@ module.exports = function (grunt) {
             expand: true,
             flatten: true,
             src: ['bower_components/angular/angular.min.js'],
-            dest: '../web/vendor/angular/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular/'
           },
           {
             expand: true,
             flatten: true,
             src: ['bower_components/angular-animate/angular-animate.min.js'],
-            dest: '../web/vendor/angular-animate/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-animate/'
           },
           {
             expand: true,
             flatten: true,
             src: ['bower_components/angular-aria/angular-aria.min.js'],
-            dest: '../web/vendor/angular-aria/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-aria/'
           },
           {
             expand: true,
             flatten: true,
             src: ['bower_components/angular-i18n/angular-locale_es-es.js'],
-            dest: '../web/vendor/angular-i18n/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-i18n/'
           },
           {
             expand: true,
@@ -36,31 +36,31 @@ module.exports = function (grunt) {
               'bower_components/angular-material/angular-material.min.js',
               'bower_components/angular-material/angular-material.min.css'
             ],
-            dest: '../web/vendor/angular-material/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-material/'
           },
           {
             expand: true,
             flatten: true,
             src: ['bower_components/angular-resource/angular-resource.min.js'],
-            dest: '../web/vendor/angular-resource/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-resource/'
           },
           {
             expand: true,
             flatten: true,
             src: ['app/**/!(*spec).js'],
-            dest: '../web/js/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/js/'
           },
           {
             expand: true,
             flatten: true,
             src: ['app/**/*.html'],
-            dest: '../web/templates/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/templates/'
           },
           {
             expand: true,
             flatten: true,
             src: ['app/styles/**/*.css'],
-            dest: '../web/css/'
+            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/css/'
           }
         ]
       }
