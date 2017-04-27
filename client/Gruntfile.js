@@ -1,55 +1,25 @@
 module.exports = function (grunt) {
 
-  // Project configuration.
+  var publicFolder = '../src/RootDiamoons/BandAccountingBundle/Resources/public/';
+
   grunt.initConfig({
+    concat: {
+      options: {
+        sourceMap: true
+      },
+      vendor: {
+        src: ['bower_components/**/*.js'],
+        dest: publicFolder + 'vendor.js'
+      },
+      scripts: {
+        src: ['app/**/!(*spec).js'],
+        dest: publicFolder + 'scripts.js'
+      },
+    },
+
     copy: {
       main: {
         files: [
-          {
-            expand: true,
-            flatten: true,
-            src: ['bower_components/angular/angular.min.js'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['bower_components/angular-animate/angular-animate.min.js'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-animate/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['bower_components/angular-aria/angular-aria.min.js'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-aria/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['bower_components/angular-i18n/angular-locale_es-es.js'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-i18n/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: [
-              'bower_components/angular-material/angular-material.min.js',
-              'bower_components/angular-material/angular-material.min.css'
-            ],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-material/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['bower_components/angular-resource/angular-resource.min.js'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/vendor/angular-resource/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['app/**/!(*spec).js'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/js/'
-          },
           {
             expand: true,
             flatten: true,
@@ -59,7 +29,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             flatten: true,
-            src: ['app/styles/**/*.css'],
+            src: ['app/styles/**/*.css', 'bower_components/angular-material/angular-material.min.css'],
             dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/css/'
           }
         ]
@@ -80,8 +50,9 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy']);
+  grunt.registerTask('default', ['concat', 'copy']);
 
 };
