@@ -9,11 +9,11 @@ module.exports = function (grunt) {
       },
       vendor: {
         src: ['bower_components/**/*.js'],
-        dest: publicFolder + 'vendor.js'
+        dest: publicFolder + 'js/vendor.js'
       },
       scripts: {
         src: ['app/**/!(*spec).js'],
-        dest: publicFolder + 'scripts.js'
+        dest: publicFolder + 'js/scripts.js'
       },
     },
 
