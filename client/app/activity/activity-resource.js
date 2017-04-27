@@ -6,8 +6,8 @@ angular.module('resources.activity', ['ngResource'])
 
     var activityResource = {
       api: {
-        activities: $resource('/activities'),
-        activity: $resource('/activities/:activityId', {activityId: '@activityId'}, {
+        activities: $resource('./activities'),
+        activity: $resource('./activities/:activityId', {activityId: '@activityId'}, {
           update: {method: 'PUT'}
         })
       }
