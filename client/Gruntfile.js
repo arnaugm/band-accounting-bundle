@@ -8,7 +8,14 @@ module.exports = function (grunt) {
         sourceMap: true
       },
       vendor: {
-        src: ['bower_components/**/*.js'],
+        src: [
+          'bower_components/angular/angular.js',
+          'bower_components/angular-animate/angular-animate.js',
+          'bower_components/angular-aria/angular-aria.js',
+          'bower_components/angular-i18n/angular-locale_es-es.js',
+          'bower_components/angular-material/angular-material.js',
+          'bower_components/angular-resource/angular-resource.js'
+        ],
         dest: publicFolder + 'js/vendor.js'
       },
       scripts: {
