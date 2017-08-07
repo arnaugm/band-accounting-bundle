@@ -7,7 +7,7 @@ Symfony2 bundle.
 
 ### Step 1: Download the Bundle
 ```bash
-$ composer require arnaugm/band-accounting
+$ composer require arnaugm/band-accounting-bundle
 ```
 
 ### Step 2: Enable the Bundle
