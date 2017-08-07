@@ -1,6 +1,7 @@
-# Band accounting
+# Band accounting bundle
 
-Accounting system for bands
+Accounting system for music bands.
+Symfony2 bundle.
 
 ## Installation
 
@@ -9,7 +10,7 @@ Accounting system for bands
 $ composer require arnaugm/band-accounting
 ```
 
-### Step 2: Enable the bundle
+### Step 2: Enable the Bundle
 ```php
 <?php
 // app/AppKernel.php
@@ -41,11 +42,7 @@ band_accounting:
 
 ### Step 4: Prepare the Web Assets of the Bundle
 ```bash
-# Symfony 2
-php app/console assets:install --symlink
-
-# Symfony 3
-php bin/console assets:install --symlink
+app/console assets:install --symlink
 ```
 
 ## Development
