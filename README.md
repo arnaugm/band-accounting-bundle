@@ -22,7 +22,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new RootDiamoons\BandAccountingBundle\RootDiamoonsBandAccountingBundle(),
         );
     }
 
