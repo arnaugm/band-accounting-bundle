@@ -6,7 +6,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
 
     return {
       restrict: 'E',
-      templateUrl: 'templates/activities-list-directive.html',
+      templateUrl: 'activities-list/activities-list-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.activities = [];
@@ -64,7 +64,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $rootScope.newActivity = function($event) {
           $mdDialog.show({
             controller: ['$scope', '$mdDialog', dialogController],
-            templateUrl: '../app/activity/edit-activity-dialog.html',
+            templateUrl: 'activity/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -81,7 +81,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
               activity: $scope.activities[$index],
               index: $index
             },
-            templateUrl: '../app/activity/edit-activity-dialog.html',
+            templateUrl: 'activity/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -240,7 +240,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
 
     return {
       restrict: 'E',
-      templateUrl: 'templates/edit-activity-directive.html',
+      templateUrl: 'activity/edit-activity-directive.html',
       scope: {
         activity: '=?',
         index: '=?'
@@ -326,7 +326,7 @@ angular.module('directives.menuOptions', ['templates'])
 
     return {
       restrict: 'E',
-      templateUrl: '../app/menu-options/menu-options-directive.html',
+      templateUrl: 'menu-options/menu-options-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.openMenu = function($mdMenu, $event) {
