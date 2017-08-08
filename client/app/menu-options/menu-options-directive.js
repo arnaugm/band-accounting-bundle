@@ -6,7 +6,7 @@ angular.module('directives.menuOptions', ['templates'])
 
     return {
       restrict: 'E',
-      templateUrl: '../app/menu-options/menu-options-directive.html',
+      templateUrl: 'menu-options/menu-options-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.openMenu = function($mdMenu, $event) {

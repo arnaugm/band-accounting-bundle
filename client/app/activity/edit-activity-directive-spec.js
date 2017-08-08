@@ -62,7 +62,7 @@ describe('edit activity directive', function() {
       date: new Date()
     };
     $httpBackend
-      .whenPOST('/activities')
+      .whenPOST('./activities')
       .respond(200, response);
 
     elementScope = getScope();
@@ -78,7 +78,7 @@ describe('edit activity directive', function() {
     spyOn($rootScope, '$broadcast');
     var response = {};
     $httpBackend
-      .whenPOST('/activities')
+      .whenPOST('./activities')
       .respond(200, response);
 
     elementScope = getScope();
@@ -93,7 +93,7 @@ describe('edit activity directive', function() {
   it('should notify in case of save error' , function() {
     spyOn($rootScope, '$broadcast');
     $httpBackend
-      .whenPOST('/activities')
+      .whenPOST('./activities')
       .respond(500, {message: 'something went wrong'});
 
     elementScope = getScope();

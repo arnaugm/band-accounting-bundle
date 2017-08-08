@@ -42,7 +42,7 @@ describe('activity resource', function() {
 
     it('should get the list of activities', function(done) {
       $httpBackend
-        .whenGET('/activities')
+        .whenGET('./activities')
         .respond(200, {activities: activities});
 
       var promise = activityResource.get();
@@ -58,7 +58,7 @@ describe('activity resource', function() {
 
     it('should notify in case of retrieve error', function(done) {
       $httpBackend
-        .whenGET('/activities')
+        .whenGET('./activities')
         .respond(500, {message: 'something went wrong'});
 
       var promise = activityResource.get();
@@ -74,7 +74,7 @@ describe('activity resource', function() {
 
     it('should notify in case of no activities', function(done) {
       $httpBackend
-        .whenGET('/activities')
+        .whenGET('./activities')
         .respond(200, {activities: {}});
 
       var promise = activityResource.get();
@@ -90,7 +90,7 @@ describe('activity resource', function() {
 
     it('should format activities properly', function(done) {
       $httpBackend
-        .whenGET('/activities')
+        .whenGET('./activities')
         .respond(200, {activities: activities});
 
       var promise = activityResource.get();
@@ -108,28 +108,28 @@ describe('activity resource', function() {
     });
 
     it('should call the resource with the query parameter "term=1"', function() {
-      $httpBackend.expectGET('/activities?term=1').respond({});
+      $httpBackend.expectGET('./activities?term=1').respond({});
 
       activityResource.get('1');
       $httpBackend.flush();
     });
 
     it('should call the resource with the query parameter "term=2"', function() {
-      $httpBackend.expectGET('/activities?term=2').respond({});
+      $httpBackend.expectGET('./activities?term=2').respond({});
 
       activityResource.get('2');
       $httpBackend.flush();
     });
 
     it('should call the resource with the query parameter "term=3"', function() {
-      $httpBackend.expectGET('/activities?term=3').respond({});
+      $httpBackend.expectGET('./activities?term=3').respond({});
 
       activityResource.get('3');
       $httpBackend.flush();
     });
 
     it('should call the resource with the query parameter "term=4"', function() {
-      $httpBackend.expectGET('/activities?term=4').respond({});
+      $httpBackend.expectGET('./activities?term=4').respond({});
 
       activityResource.get('4');
       $httpBackend.flush();

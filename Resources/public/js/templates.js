@@ -1,7 +1,7 @@
-angular.module("templates", ["../app/activities-list/activities-list-directive.html", "../app/activity/edit-activity-dialog.html", "../app/activity/edit-activity-directive.html", "../app/menu-options/menu-options-directive.html"]);
+angular.module("templates", ["activities-list/activities-list-directive.html", "activity/edit-activity-dialog.html", "activity/edit-activity-directive.html", "menu-options/menu-options-directive.html"]);
 
-angular.module("../app/activities-list/activities-list-directive.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../app/activities-list/activities-list-directive.html",
+angular.module("activities-list/activities-list-directive.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("activities-list/activities-list-directive.html",
     "<div flex id=\"totals\">\n" +
     "    <ul>\n" +
     "        <li>\n" +
@@ -67,8 +67,8 @@ angular.module("../app/activities-list/activities-list-directive.html", []).run(
     "");
 }]);
 
-angular.module("../app/activity/edit-activity-dialog.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../app/activity/edit-activity-dialog.html",
+angular.module("activity/edit-activity-dialog.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("activity/edit-activity-dialog.html",
     "<md-dialog aria-label=\"Edit activity\">\n" +
     "    <form ng-cloak>\n" +
     "        <md-toolbar>\n" +
@@ -90,8 +90,8 @@ angular.module("../app/activity/edit-activity-dialog.html", []).run(["$templateC
     "</md-dialog>");
 }]);
 
-angular.module("../app/activity/edit-activity-directive.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../app/activity/edit-activity-directive.html",
+angular.module("activity/edit-activity-directive.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("activity/edit-activity-directive.html",
     "<md-input-container class=\"md-block\">\n" +
     "    <!-- Use floating label instead of placeholder -->\n" +
     "    <label>Concept</label>\n" +
@@ -113,8 +113,8 @@ angular.module("../app/activity/edit-activity-directive.html", []).run(["$templa
     "</div>");
 }]);
 
-angular.module("../app/menu-options/menu-options-directive.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../app/menu-options/menu-options-directive.html",
+angular.module("menu-options/menu-options-directive.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("menu-options/menu-options-directive.html",
     "<div class=\"menu\">\n" +
     "    <md-menu>\n" +
     "        <md-button aria-label=\"Options\" class=\"md-icon-button\" ng-click=\"openMenu($mdMenu, $event)\">\n" +

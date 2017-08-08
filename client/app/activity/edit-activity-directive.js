@@ -17,7 +17,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
 
     return {
       restrict: 'E',
-      templateUrl: 'templates/edit-activity-directive.html',
+      templateUrl: 'activity/edit-activity-directive.html',
       scope: {
         activity: '=?',
         index: '=?'

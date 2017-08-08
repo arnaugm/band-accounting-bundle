@@ -33,7 +33,7 @@ describe('activities list directive', function() {
 
   var getScope = function(activities) {
     $httpBackend
-      .whenGET('/activities?term=2')
+      .whenGET('./activities?term=2')
       .respond(200, activities);
     directiveElem = getCompiledElement();
     $httpBackend.flush();
@@ -44,7 +44,7 @@ describe('activities list directive', function() {
 
   it('should render the directive correctly', function() {
     $httpBackend
-      .whenGET('/activities?term=2')
+      .whenGET('./activities?term=2')
       .respond(200, '');
     directiveElem = getCompiledElement();
 

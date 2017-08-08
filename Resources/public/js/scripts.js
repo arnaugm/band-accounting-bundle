@@ -6,7 +6,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
 
     return {
       restrict: 'E',
-      templateUrl: '../app/activities-list/activities-list-directive.html',
+      templateUrl: 'templates/activities-list-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.activities = [];
@@ -64,7 +64,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $rootScope.newActivity = function($event) {
           $mdDialog.show({
             controller: ['$scope', '$mdDialog', dialogController],
-            templateUrl: '/bundles/arnaugmbandaccounting/templates/edit-activity-dialog.html',
+            templateUrl: '../app/activity/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -81,7 +81,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
               activity: $scope.activities[$index],
               index: $index
             },
-            templateUrl: '/bundles/arnaugmbandaccounting/templates/edit-activity-dialog.html',
+            templateUrl: '../app/activity/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -240,7 +240,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
 
     return {
       restrict: 'E',
-      templateUrl: '../app/activity/edit-activity-directive.html',
+      templateUrl: 'templates/edit-activity-directive.html',
       scope: {
         activity: '=?',
         index: '=?'

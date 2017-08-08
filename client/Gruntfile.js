@@ -5,11 +5,12 @@ module.exports = function (grunt) {
   grunt.initConfig({
     html2js: {
       options: {
-        module: 'templates'
+        module: 'templates',
+        base: 'app'
       },
       main: {
         src: ['app/**/*.html'],
-        dest: 'tmp/templates.js'
+        dest: publicFolder + 'js/templates.js'
       }
     },
 
@@ -37,12 +38,6 @@ module.exports = function (grunt) {
     copy: {
       main: {
         files: [
-          {
-            expand: true,
-            flatten: true,
-            src: ['tmp/templates.js'],
-            dest: '../Resources/public/js/'
-          },
           {
             expand: true,
             flatten: true,

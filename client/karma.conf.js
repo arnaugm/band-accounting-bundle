@@ -52,11 +52,6 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      // strip this from the file path, match anything followed by a "/"
-      stripPrefix: '(.*)\/+',
-      // prepend this to the file path
-      prependPrefix: 'templates/',
-
       moduleName: 'templates'
     }
 
