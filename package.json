@@ -1,6 +1,7 @@
 {
   "name": "band-accounting",
   "scripts": {
-    "test": "cd client && npm test"
+    "test": "cd client && npm test",
+    "build": "cd client && npm run build"
   }
 }
