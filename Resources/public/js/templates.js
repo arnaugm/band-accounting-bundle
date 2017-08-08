@@ -95,15 +95,15 @@ angular.module("activity/edit-activity-directive.html", []).run(["$templateCache
     "<md-input-container class=\"md-block\">\n" +
     "    <!-- Use floating label instead of placeholder -->\n" +
     "    <label>Concept</label>\n" +
-    "    <md-icon md-svg-src=\"img/icons/pen.svg\"></md-icon>\n" +
+    "    <md-icon md-svg-src=\"{{ asset('bundles/arnaugmbandaccounting/img/icons/pen.svg') }}\"></md-icon>\n" +
     "    <input id=\"activity-concept\" ng-model=\"activity.concept\" type=\"text\" required>\n" +
     "</md-input-container>\n" +
     "\n" +
     "<md-input-container class=\"md-icon-right md-block\">\n" +
     "    <label>Amount</label>\n" +
-    "    <md-icon md-svg-src=\"img/icons/money.svg\"></md-icon>\n" +
+    "    <md-icon md-svg-src=\"{{ asset('bundles/arnaugmbandaccounting/img/icons/money.svg') }}\"></md-icon>\n" +
     "    <input ng-model=\"activity.amount\" type=\"number\" step=\"0.01\" required>\n" +
-    "    <md-icon md-svg-src=\"img/icons/ic_euro_24px.svg\"></md-icon>\n" +
+    "    <md-icon md-svg-src=\"{{ asset('bundles/arnaugmbandaccounting/img/icons/ic_euro_24px.svg') }}\"></md-icon>\n" +
     "</md-input-container>\n" +
     "\n" +
     "<md-datepicker ng-model=\"activity.dateValue\" md-placeholder=\"Date value\"></md-datepicker>\n" +

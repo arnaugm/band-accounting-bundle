@@ -42,7 +42,13 @@ module.exports = function (grunt) {
             expand: true,
             flatten: true,
             src: ['app/styles/**/*.css', 'bower_components/angular-material/angular-material.min.css'],
-            dest: '../Resources/public/css/'
+            dest: publicFolder + 'css/'
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: ['app/img/**/*.svg'],
+            dest: publicFolder + 'img/'
           }
         ]
       }
