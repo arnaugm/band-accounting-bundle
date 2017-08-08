@@ -1,0 +1,27 @@
+ArnauGM\BandAccountingBundle\Entity\Activity:
+    type: entity
+    table: activities
+    repositoryClass: ArnauGM\BandAccountingBundle\Repository\ActivityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        concept:
+            type: string
+            length: 255
+        amount:
+            type: decimal
+            precision: 15
+            scale: 2
+        date:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        dateValue:
+            type: datetime
+            column: date_value
+    lifecycleCallbacks: {  }

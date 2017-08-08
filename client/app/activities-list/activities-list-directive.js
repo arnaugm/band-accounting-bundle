@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('directives.activitiesList', ['resources.activity', 'helpers.date', 'ngMaterial'])
+angular.module('directives.activitiesList', ['resources.activity', 'helpers.date', 'ngMaterial', 'templates'])
 
   .directive('activitiesList', ['activityResource', 'dateHelper', '$rootScope', '$mdDialog', '$mdToast', function(activityResource, dateHelper, $rootScope, $mdDialog, $mdToast) {
 
     return {
       restrict: 'E',
-      templateUrl: '/bundles/rootdiamoonsbandaccounting/templates/activities-list-directive.html',
+      templateUrl: 'templates/activities-list-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.activities = [];
@@ -64,7 +64,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
         $rootScope.newActivity = function($event) {
           $mdDialog.show({
             controller: ['$scope', '$mdDialog', dialogController],
-            templateUrl: '/bundles/rootdiamoonsbandaccounting/templates/edit-activity-dialog.html',
+            templateUrl: '/bundles/arnaugmbandaccounting/templates/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
@@ -81,7 +81,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
               activity: $scope.activities[$index],
               index: $index
             },
-            templateUrl: '/bundles/rootdiamoonsbandaccounting/templates/edit-activity-dialog.html',
+            templateUrl: '/bundles/arnaugmbandaccounting/templates/edit-activity-dialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,

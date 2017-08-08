@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('directives.menuOptions', [])
+angular.module('directives.menuOptions', ['templates'])
 
   .directive('menuOptions', ['$rootScope', function($rootScope) {
 
     return {
       restrict: 'E',
-      templateUrl: '/bundles/rootdiamoonsbandaccounting/templates/menu-options-directive.html',
+      templateUrl: '../app/menu-options/menu-options-directive.html',
       scope: {},
       controller: ['$scope', function($scope) {
         $scope.openMenu = function($mdMenu, $event) {

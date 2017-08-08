@@ -1,0 +1,3 @@
+services:
+    arnaugm_band_accounting.terms:
+        class: ArnauGM\BandAccountingBundle\Terms\Terms

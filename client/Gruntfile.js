@@ -1,8 +1,18 @@
 module.exports = function (grunt) {
 
-  var publicFolder = '../src/RootDiamoons/BandAccountingBundle/Resources/public/';
+  var publicFolder = '../Resources/public/';
 
   grunt.initConfig({
+    html2js: {
+      options: {
+        module: 'templates'
+      },
+      main: {
+        src: ['app/**/*.html'],
+        dest: 'tmp/templates.js'
+      }
+    },
+
     concat: {
       options: {
         sourceMap: true
@@ -21,7 +31,7 @@ module.exports = function (grunt) {
       scripts: {
         src: ['app/**/!(*spec).js'],
         dest: publicFolder + 'js/scripts.js'
-      },
+      }
     },
 
     copy: {
@@ -30,14 +40,14 @@ module.exports = function (grunt) {
           {
             expand: true,
             flatten: true,
-            src: ['app/**/*.html'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/templates/'
+            src: ['tmp/templates.js'],
+            dest: '../Resources/public/js/'
           },
           {
             expand: true,
             flatten: true,
             src: ['app/styles/**/*.css', 'bower_components/angular-material/angular-material.min.css'],
-            dest: '../src/RootDiamoons/BandAccountingBundle/Resources/public/css/'
+            dest: '../Resources/public/css/'
           }
         ]
       }
@@ -58,8 +68,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-html2js');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'copy']);
+  grunt.registerTask('default', ['html2js', 'concat', 'copy']);
 
 };

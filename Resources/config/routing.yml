@@ -1,0 +1,18 @@
+arnaugm_band_accounting_homepage:
+    path:     /
+    defaults: { _controller: ArnauGMBandAccountingBundle:Activity:index }
+
+arnaugm_band_accounting_activity_list:
+    path:     /activities
+    defaults: { _controller: ArnauGMBandAccountingBundle:Activity:list }
+    methods: [GET]
+
+arnaugm_band_accounting_activity_create:
+    path:     /activities
+    defaults: { _controller: ArnauGMBandAccountingBundle:Activity:create }
+    methods: [POST]
+
+arnaugm_band_accounting_activity_update:
+    path:     /activities/{id}
+    defaults: { _controller: ArnauGMBandAccountingBundle:Activity:update }
+    methods: [PUT]

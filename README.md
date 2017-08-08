@@ -22,7 +22,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new RootDiamoons\BandAccountingBundle\RootDiamoonsBandAccountingBundle(),
+            new ArnauGM\BandAccountingBundle\ArnauGMBandAccountingBundle(),
         );
     }
 
@@ -34,7 +34,7 @@ class AppKernel extends Kernel
 ```yaml
 # app/config/routing.yml
 band_accounting:
-    resource: '@RootDiamoonsBandAccountingBundle/Resources/config/routing.yml'
+    resource: '@ArnauGMBandAccountingBundle/Resources/config/routing.yml'
     prefix:   /admin/accounting
     
 # ...
@@ -47,15 +47,6 @@ app/console assets:install --symlink
 
 ## Development
 
-### Build backend
-
-```
-composer install
-app/console doctrine:database:create
-app/console doctrine:schema:create
-app/console cache:clear
-```
-
 ### Build frontend
 
 ```
@@ -63,13 +54,6 @@ cd client
 npm install
 grunt
 cd ..
-```
-
-### Run app
-
-```
-app/console server:start
-open http://localhost:8000
 ```
 
 ### Enable client watcher

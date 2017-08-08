@@ -11,7 +11,6 @@ describe('edit activity directive', function() {
   beforeEach(function() {
     module('directives.editActivity');
     module('models.activity');
-    // module('resources.activity');
     module('templates');
 
     inject(function(_$compile_, _$rootScope_, _$httpBackend_, _activityModel_) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('directives.editActivity', ['models.activity', 'resources.activity', 'ngMaterial'])
+angular.module('directives.editActivity', ['models.activity', 'resources.activity', 'ngMaterial', 'templates'])
 
   .config(function($mdDateLocaleProvider) {
 
@@ -17,7 +17,7 @@ angular.module('directives.editActivity', ['models.activity', 'resources.activit
 
     return {
       restrict: 'E',
-      templateUrl: '/bundles/rootdiamoonsbandaccounting/templates/edit-activity-directive.html',
+      templateUrl: 'templates/edit-activity-directive.html',
       scope: {
         activity: '=?',
         index: '=?'

@@ -1,3 +1,0 @@
-services:
-    root_diamoons_band_accounting.terms:
-        class: RootDiamoons\BandAccountingBundle\Terms\Terms

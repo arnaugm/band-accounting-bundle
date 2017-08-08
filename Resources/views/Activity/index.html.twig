@@ -1,0 +1,23 @@
+{% extends '@ArnauGMBandAccounting/layout.html.twig' %}
+
+{% block body %}
+
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <menu-options></menu-options>
+
+            <h1>Band accounting</h1>
+
+            <span flex></span>
+
+            <md-button class="md-icon-button" aria-label="New activity" ng-click="newActivity()">
+                <i class="material-icons">add_circle</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content flex id="activities">
+        <activities-list></activities-list>
+    </md-content>
+
+{% endblock body %}

@@ -5,12 +5,7 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="app/bootstrap.php.cache"
 >
-
-    <php>
-        <server name="KERNEL_DIR" value="app/" />
-    </php>
 
     <testsuites>
         <testsuite name="Project Test Suite">
@@ -20,12 +15,17 @@
 
     <filter>
         <whitelist>
-            <directory>src</directory>
-            <exclude>
-                <directory>src/*Bundle/Resources</directory>
-                <directory>src/*/*Bundle/Resources</directory>
-                <directory>src/*/Bundle/*Bundle/Resources</directory>
-            </exclude>
+            <directory suffix=".php">./Controller</directory>
+            <directory suffix=".php">./DependencyInjection</directory>
+            <directory suffix=".php">./Entity</directory>
+            <directory suffix=".php">./Form</directory>
+            <directory suffix=".php">./Repository</directory>
+            <directory suffix=".php">./Terms</directory>
         </whitelist>
+        <blacklist>
+            <directory>./vendor</directory>
+            <directory>./tests</directory>
+            <directory>./client</directory>
+        </blacklist>
     </filter>
 </phpunit>
