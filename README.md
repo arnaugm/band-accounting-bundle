@@ -10,7 +10,7 @@ Symfony2 bundle.
 $ composer require arnaugm/band-accounting-bundle
 ```
 
-### Step 2: Enable the Bundle
+### Step 2: Enable needed bundles
 ```php
 <?php
 // app/AppKernel.php
@@ -23,6 +23,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
             new ArnauGM\BandAccountingBundle\ArnauGMBandAccountingBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         );
     }
 
@@ -30,7 +31,19 @@ class AppKernel extends Kernel
 }
 ```
 
-### Step 3: Load the Routes of the Bundle
+### Step 3: Configure the bundles
+```yaml
+# app/config/config.yml
+stof_doctrine_extensions:
+    default_locale: es_ES
+    orm:
+        default:
+            timestampable: true
+    
+# ...
+```
+
+### Step 4: Load the Routes of the Bundle
 ```yaml
 # app/config/routing.yml
 band_accounting:
@@ -40,7 +53,7 @@ band_accounting:
 # ...
 ```
 
-### Step 4: Prepare the Web Assets of the Bundle
+### Step 5: Prepare the Web Assets of the Bundle
 ```bash
 app/console assets:install --symlink
 ```

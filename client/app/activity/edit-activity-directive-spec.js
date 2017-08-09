@@ -30,7 +30,7 @@ describe('edit activity directive', function() {
 
   beforeEach(function() {
     $httpBackend
-      .whenGET(/^img\/.*/)
+      .whenGET(/img\/.*/)
       .respond(200, '<svg></svg>');
   });
 
