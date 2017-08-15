@@ -1,29 +1,32 @@
-<div flex id="totals">
+<div id="totals">
     <ul>
-        <li>
-            Income: <span ng-class="'pos-font'">{{ income | currency : '€' }}</span>
+        <li layout-gt-sm="row">
+            <div>Income:</div>
+            <div ng-class="'pos-font'">{{ income | currency : '€' }}</div>
         </li>
-        <li>
-            Expenses: <span ng-class="'neg-font'">{{ expenses | currency : '€' }}</span>
+        <li layout-gt-sm="row" >
+            <div>Expenses:</div>
+            <div ng-class="'neg-font'">{{ expenses | currency : '€' }}</div>
         </li>
-        <li>
-            Total: <span ng-class="{ 'pos-font': total >= 0, 'neg-font': total < 0 }">{{ total | currency : '€' }}</span>
+        <li layout-gt-sm="row" >
+            <div>Total:</div>
+            <div ng-class="{ 'pos-font': total >= 0, 'neg-font': total < 0 }">{{ total | currency : '€' }}</div>
         </li>
     </ul>
 </div>
 
-<md-toolbar class="md-hue-3">
-    <div layout="row" class="md-toolbar-tools" layout-align="space-around center">
-        <div flex="15" layout="row" layout-align="center">
+<md-toolbar id="activities-header" class="md-hue-3">
+    <div layout="row" class="md-toolbar-tools" layout-align="space-between center">
+        <div ng-attr-flex="{{ $mdMedia('gt-sm') && 15 || 33 }}" layout="row" layout-align="center">
             Date value
         </div>
-        <div flex="15" layout="row" layout-align="center">
+        <div flex="15" layout="row" layout-align="center" ng-show="$mdMedia('gt-sm')">
             Date
         </div>
-        <div flex="55" layout="row" layout-align="center">
+        <div ng-attr-flex="{{ $mdMedia('gt-sm') && 55 || 33 }}" layout="row" layout-align="center">
             Concept
         </div>
-        <div flex="15" layout="row" layout-align="center">
+        <div ng-attr-flex="{{ $mdMedia('gt-sm') && 15 || 33 }}" layout="row" layout-align="center">
             Amount
         </div>
     </div>
@@ -34,7 +37,7 @@
 </div>
 
 <md-list>
-    <md-list-item ng-show="status == 'COMPLETE' && !activities.length">
+    <md-list-item ng-if="status == 'COMPLETE' && !activities.length">
         <div layout="row" layout-fill layout-padding layout-align="center" class="empty-list">
             No activities available
         </div>
@@ -44,16 +47,16 @@
                   ng-class="{ 'pos-row': activity.amount >= 0, 'neg-row': activity.amount < 0 }"
                   ng-click="editActivity($event, $index)">
         <div layout="row" layout-fill layout-padding>
-            <div flex="15" layout="row" layout-align="center">
+            <div ng-attr-flex="{{ $mdMedia('gt-sm') && 15 || 33 }}" layout="row" layout-align="center">
                 {{ activity.dateValue | date:'dd-MM-yyyy' }}
             </div>
-            <div flex="15" layout="row" layout-align="center">
+            <div flex="15" layout="row" layout-align="center" ng-show="$mdMedia('gt-sm')">
                 {{ activity.date | date:'dd-MM-yyyy' }}
             </div>
-            <div flex="55" layout="row" layout-align="start">
+            <div ng-attr-flex="{{ $mdMedia('gt-sm') && 55 || 33 }}" layout="row" layout-align="start">
                 {{ activity.concept }}
             </div>
-            <div flex="15" layout="row" layout-align="end">
+            <div ng-attr-flex="{{ $mdMedia('gt-sm') && 15 || 33 }}" layout="row" layout-align="end">
                 {{ activity.amount | currency : '€' }}
             </div>
         </div>

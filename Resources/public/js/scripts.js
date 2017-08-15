@@ -2,7 +2,7 @@
 
 angular.module('directives.activitiesList', ['resources.activity', 'helpers.date', 'ngMaterial', 'templates'])
 
-  .directive('activitiesList', ['activityResource', 'dateHelper', '$rootScope', '$mdDialog', '$mdToast', function(activityResource, dateHelper, $rootScope, $mdDialog, $mdToast) {
+  .directive('activitiesList', ['activityResource', 'dateHelper', '$rootScope', '$mdDialog', '$mdToast', '$mdMedia', function(activityResource, dateHelper, $rootScope, $mdDialog, $mdToast, $mdMedia) {
 
     return {
       restrict: 'E',
@@ -11,6 +11,7 @@ angular.module('directives.activitiesList', ['resources.activity', 'helpers.date
       controller: ['$scope', function($scope) {
         $scope.activities = [];
         $scope.status = 'PENDING';
+        $scope.$mdMedia = $mdMedia;
 
         activityResource.get('2').then(function(result) {
           buildActivitiesListScope(result);

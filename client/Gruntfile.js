@@ -61,7 +61,7 @@ module.exports = function (grunt) {
           'app/**/*.html',
           'app/styles/**/*.css'
         ],
-        tasks: ['copy']
+        tasks: ['default']
       }
     }
   });

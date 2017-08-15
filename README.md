@@ -60,19 +60,25 @@ app/console assets:install --symlink
 
 ## Development
 
-### Build frontend
-
+* Install the bundle in a dummy Symfony 2.7 application
+* Change the band-accounting dependency for a symlink to this project's root folder
+```bash
+mv <dummy_application_folder>/vendor/arnaugm/band-accounting-bundle <dummy_application_folder>/vendor/arnaugm/band-accounting-bundle-bkp
+ln -s <root_folder> <dummy_application_folder>/vendor/arnaugm/band-accounting-bundle
 ```
-cd client
+* Start PHP server from the dummy application
+```bash
+cd <dummy_application_folder>
+app/console server:start
+```
+* Build client
+```bash
+cd <root_folder>/client
 npm install
 grunt
-cd ..
 ```
-
-### Enable client watcher
-
-```
-cd client
+* Enable client watcher
+```bash
 grunt watch
 ```
 

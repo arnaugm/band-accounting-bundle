@@ -2,32 +2,35 @@ angular.module("templates", ["activities-list/activities-list-directive.html", "
 
 angular.module("activities-list/activities-list-directive.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("activities-list/activities-list-directive.html",
-    "<div flex id=\"totals\">\n" +
+    "<div id=\"totals\">\n" +
     "    <ul>\n" +
-    "        <li>\n" +
-    "            Income: <span ng-class=\"'pos-font'\">{{ income | currency : '€' }}</span>\n" +
+    "        <li layout-gt-sm=\"row\">\n" +
+    "            <div>Income:</div>\n" +
+    "            <div ng-class=\"'pos-font'\">{{ income | currency : '€' }}</div>\n" +
     "        </li>\n" +
-    "        <li>\n" +
-    "            Expenses: <span ng-class=\"'neg-font'\">{{ expenses | currency : '€' }}</span>\n" +
+    "        <li layout-gt-sm=\"row\" >\n" +
+    "            <div>Expenses:</div>\n" +
+    "            <div ng-class=\"'neg-font'\">{{ expenses | currency : '€' }}</div>\n" +
     "        </li>\n" +
-    "        <li>\n" +
-    "            Total: <span ng-class=\"{ 'pos-font': total >= 0, 'neg-font': total < 0 }\">{{ total | currency : '€' }}</span>\n" +
+    "        <li layout-gt-sm=\"row\" >\n" +
+    "            <div>Total:</div>\n" +
+    "            <div ng-class=\"{ 'pos-font': total >= 0, 'neg-font': total < 0 }\">{{ total | currency : '€' }}</div>\n" +
     "        </li>\n" +
     "    </ul>\n" +
     "</div>\n" +
     "\n" +
-    "<md-toolbar class=\"md-hue-3\">\n" +
-    "    <div layout=\"row\" class=\"md-toolbar-tools\" layout-align=\"space-around center\">\n" +
-    "        <div flex=\"15\" layout=\"row\" layout-align=\"center\">\n" +
+    "<md-toolbar id=\"activities-header\" class=\"md-hue-3\">\n" +
+    "    <div layout=\"row\" class=\"md-toolbar-tools\" layout-align=\"space-between center\">\n" +
+    "        <div ng-attr-flex=\"{{ $mdMedia('gt-sm') && 15 || 33 }}\" layout=\"row\" layout-align=\"center\">\n" +
     "            Date value\n" +
     "        </div>\n" +
-    "        <div flex=\"15\" layout=\"row\" layout-align=\"center\">\n" +
+    "        <div flex=\"15\" layout=\"row\" layout-align=\"center\" ng-show=\"$mdMedia('gt-sm')\">\n" +
     "            Date\n" +
     "        </div>\n" +
-    "        <div flex=\"55\" layout=\"row\" layout-align=\"center\">\n" +
+    "        <div ng-attr-flex=\"{{ $mdMedia('gt-sm') && 55 || 33 }}\" layout=\"row\" layout-align=\"center\">\n" +
     "            Concept\n" +
     "        </div>\n" +
-    "        <div flex=\"15\" layout=\"row\" layout-align=\"center\">\n" +
+    "        <div ng-attr-flex=\"{{ $mdMedia('gt-sm') && 15 || 33 }}\" layout=\"row\" layout-align=\"center\">\n" +
     "            Amount\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -38,7 +41,7 @@ angular.module("activities-list/activities-list-directive.html", []).run(["$temp
     "</div>\n" +
     "\n" +
     "<md-list>\n" +
-    "    <md-list-item ng-show=\"status == 'COMPLETE' && !activities.length\">\n" +
+    "    <md-list-item ng-if=\"status == 'COMPLETE' && !activities.length\">\n" +
     "        <div layout=\"row\" layout-fill layout-padding layout-align=\"center\" class=\"empty-list\">\n" +
     "            No activities available\n" +
     "        </div>\n" +
@@ -48,16 +51,16 @@ angular.module("activities-list/activities-list-directive.html", []).run(["$temp
     "                  ng-class=\"{ 'pos-row': activity.amount >= 0, 'neg-row': activity.amount < 0 }\"\n" +
     "                  ng-click=\"editActivity($event, $index)\">\n" +
     "        <div layout=\"row\" layout-fill layout-padding>\n" +
-    "            <div flex=\"15\" layout=\"row\" layout-align=\"center\">\n" +
+    "            <div ng-attr-flex=\"{{ $mdMedia('gt-sm') && 15 || 33 }}\" layout=\"row\" layout-align=\"center\">\n" +
     "                {{ activity.dateValue | date:'dd-MM-yyyy' }}\n" +
     "            </div>\n" +
-    "            <div flex=\"15\" layout=\"row\" layout-align=\"center\">\n" +
+    "            <div flex=\"15\" layout=\"row\" layout-align=\"center\" ng-show=\"$mdMedia('gt-sm')\">\n" +
     "                {{ activity.date | date:'dd-MM-yyyy' }}\n" +
     "            </div>\n" +
-    "            <div flex=\"55\" layout=\"row\" layout-align=\"start\">\n" +
+    "            <div ng-attr-flex=\"{{ $mdMedia('gt-sm') && 55 || 33 }}\" layout=\"row\" layout-align=\"start\">\n" +
     "                {{ activity.concept }}\n" +
     "            </div>\n" +
-    "            <div flex=\"15\" layout=\"row\" layout-align=\"end\">\n" +
+    "            <div ng-attr-flex=\"{{ $mdMedia('gt-sm') && 15 || 33 }}\" layout=\"row\" layout-align=\"end\">\n" +
     "                {{ activity.amount | currency : '€' }}\n" +
     "            </div>\n" +
     "        </div>\n" +
