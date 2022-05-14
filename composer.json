@@ -6,8 +6,7 @@
     "homepage": "https://github.com/arnaugm/band-accounting",
     "authors": [
         {
-            "name": "Arnau González",
-            "email": "arnaugm@gmail.com"
+            "name": "Arnau González"
         }
     ],
     "require": {
